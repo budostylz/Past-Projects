@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Templates xmlns:ows="Microsoft SharePoint">
+  <Template Name="New_Client" ID="10001">
+    <Configuration ID="0" Title="New_Client" Hidden="FALSE" ImageUrl="/_layouts/images/CPVW.gif" Description="New_Client" DisplayCategory="New Client">
+    </Configuration>
+  </Template>
+</Templates>

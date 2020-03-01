@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance Title="Contracts"
+                OnQuickLaunch="TRUE"
+                TemplateType="101"
+                Url="Lists/Contracts"
+                Description="My List Instance">
+
+    <Data>
+      <Rows>
+        <Row>
+          <Field Name="ContentTypeId">0x0101</Field>
+          <Field Name="FileLeafRef">DZ Atlantic</Field>
+          <Field Name="Title">DZ Atlantic</Field>
+          <Field Name="FSObjType">1</Field>
+        </Row>
+        <Row>
+          <Field Name="ContentTypeId">0x0101</Field>
+          <Field Name="FileLeafRef">DZ ECM</Field>
+          <Field Name="Title">DZ ECM</Field>
+          <Field Name="FSObjType">1</Field>
+        </Row>
+        <Row>
+          <Field Name="ContentTypeId">0x0101</Field>
+          <Field Name="FileLeafRef">DZ Engineering</Field>
+          <Field Name="Title">DZ Engineering</Field>
+          <Field Name="FSObjType">1</Field>
+        </Row>
+        <Row>
+          <Field Name="ContentTypeId">0x0101</Field>
+          <Field Name="FileLeafRef">DZ NPS</Field>
+          <Field Name="Title">DZ NPS</Field>
+          <Field Name="FSObjType">1</Field>
+        </Row>
+      </Rows>
+    </Data>
+  </ListInstance>
+</Elements>
