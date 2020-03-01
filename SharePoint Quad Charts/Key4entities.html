@@ -1,0 +1,4238 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> FUNDING ENTITIES </title>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.14/lodash.core.js"></script>
+
+		<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+        <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
+        <script src="https://unpkg.com/redux-thunk@2.2.0/dist/redux-thunk.min.js"></script>
+        <script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.min.js"></script>
+		-->
+    </head>
+
+    <body>
+
+        <div id="app"></div>
+		
+		<h1> FUNDING ENTITIES CONSOLE APP</h1>
+
+        <!-- State Management -->
+        <script type='text/javascript'>
+
+		//Library Code
+		function createStore(reducer){ // The Store
+			// The store should have four parts
+			// 1. The state
+			// 2. Get the state.
+			// 3. Listen to changes on the state
+			// 4. Update the state
+
+			let state //hold state of entire application
+			let listeners = []
+
+			const getState = () => state //provide way to get access to state
+
+			const subscribe = (listener) => {//push function being passed to subscibe when invoked
+				listeners.push(listener)
+				return () => {
+					listeners = listeners.filter((l) => l !== listener)//filter out original listener function once subscribed is invoked
+				}
+			}
+
+			const dispatch = (action) =>{//receive action to tell dispatch the specific event that occurs inside application
+				state = reducer(state, action);//call app function
+				listeners.forEach((listener) => listener())
+			}
+
+
+
+			return { //return state when createStore is invoked
+				getState,
+				subscribe,
+				dispatch
+			}
+
+
+		}
+
+
+		/*AUTHORITATIVE DATA ACTIONS*/
+		
+		//Root 
+		const GET_ROOT = 'GET_ROOT';
+		
+		//KEY 4
+		const GET_KEY4 = 'GET_KEY4';
+		
+		//KEY 5
+		const GET_KEY5 = 'GET_KEY5';
+
+		
+		//RDTE
+		const GET_RDTE_FYs = 'GET_RDTE_FYs';
+		const GET_RDTEUFR_FYs = 'GET_RDTEUFR_FYs';
+		const GET_RDTE = 'GET_RDTE'; const GET_RDTEUFR = 'GET_RDTEUFR'; const REMOVE_RDTE = 'REMOVE_RDTE'; const REMOVE_RDTEUFR = 'REMOVE_RDTEUFR';
+		
+
+		
+		//PROC
+		const GET_PROC_FYs = 'GET_PROC_FYs';
+		const GET_PROCUFR_FYs = 'GET_PROCUFR_FYs';
+		const GET_ACFT = 'GET_ACFT';  const GET_ACFTUFR = 'GET_ACFTUFR'; const REMOVE_ACFT = 'REMOVE_ACFT'; const REMOVE_ACFTUFR = 'REMOVE_ACFTUFR';
+		const GET_AMMO = 'GET_AMMO';  const GET_AMMOUFR = 'GET_AMMOUFR'; const REMOVE_AMMO = 'REMOVE_AMMO'; const REMOVE_AMMOUFR = 'REMOVE_AMMOUFR';
+		const GET_MSLS = 'GET_MSLS';  const GET_MSLSUFR = 'GET_MSLSUFR'; const REMOVE_MSLS = 'REMOVE_MSLS'; const REMOVE_MSLSUFR = 'REMOVE_MSLSUFR';
+		const GET_OPA =  'GET_OPA';   const GET_OPAUFR =  'GET_OPAUFR';  const REMOVE_OPA = 'REMOVE_OPA';   const REMOVE_OPAUFR = 'REMOVE_OPAUFR';
+		const GET_WTCV = 'GET_WTCV';  const GET_WTCVUFR = 'GET_WTCVUFR'; const REMOVE_WTCV = 'REMOVE_WTCV'; const REMOVE_WTCVUFR = 'REMOVE_WTCVUFR';
+		
+		//OTHER
+		const GET_OTHER_FYs = 'GET_OTHER_FYs';
+		const GET_OTHERUFR_FYs = 'GET_OTHERUFR_FYs';
+		const GET_AWCF = 'GET_AWCF';  const GET_AWCFUFR = 'GET_AWCFUFR'; const REMOVE_AWCF = 'REMOVE_AWCF'; const REMOVE_AWCFUFR = 'REMOVE_WTCVAWCF';
+		const GET_CHMC = 'GET_CHMC';  const GET_CHMCUFR = 'GET_CHMCUFR'; const REMOVE_CHMC = 'REMOVE_CHMC'; const REMOVE_CHMCUFR = 'REMOVE_CHMCUFR';
+		const GET_CHMD = 'GET_CHMD';  const GET_CHMDUFR = 'GET_CHMDUFR'; const REMOVE_CHMD = 'REMOVE_CHMD'; const REMOVE_CHMDUFR = 'REMOVE_CHMDUFR';
+		const GET_MCA =  'GET_MCA';   const GET_MCAUFR =  'GET_MCAUFR';  const REMOVE_MCA =  'REMOVE_MCA';  const REMOVE_MCAUFR =  'REMOVE_MCAUFR';
+		const GET_NGPA = 'GET_NGPA';  const GET_NGPAUFR = 'GET_NGPAUFR'; const REMOVE_NGPA = 'REMOVE_NGPA'; const REMOVE_NGPAUFR = 'REMOVE_NGPAUFR';
+		const GET_OMA =  'GET_OMA';   const GET_OMAUFR =  'GET_OMAUFR';  const REMOVE_OMA =  'REMOVE_OMA';  const REMOVE_OMAUFR =  'REMOVE_OMAUFR';
+		const GET_OMNG = 'GET_OMNG';  const GET_OMNGUFR = 'GET_OMNGUFR'; const REMOVE_OMNG = 'REMOVE_OMNG'; const REMOVE_OMNGUFR = 'REMOVE_OMNGUFR';
+		const GET_OMAR = 'GET_OMAR';  const GET_OMARUFR = 'GET_OMARUFR'; const REMOVE_OMAR = 'REMOVE_OMAR'; const REMOVE_OMARUFR = 'REMOVE_OMARUFR';
+		const GET_RDTA = 'GET_RDTA';  const GET_RDTAUFR = 'GET_RDTAUFR'; const REMOVE_RDTA = 'REMOVE_RDTA'; const REMOVE_RDTAUFR = 'REMOVE_RDTAUFR';
+		const GET_RPA =  'GET_RPA';   const GET_RPAUFR =  'GET_RPAUFR';  const REMOVE_RPA =  'REMOVE_RPA';  const REMOVE_RPAUFR =  'REMOVE_RPAUFR';
+		const GET_WEDG = 'GET_WEDG';  const GET_WEDGUFR = 'GET_WEDGUFR'; const REMOVE_WEDG = 'REMOVE_WEDG'; const REMOVE_WEDGUFR = 'REMOVE_WEDGUFR';
+		
+		//DEEPDIVE
+		const GET_KEY4_DEEPDIVE = 'GET_KEY4_DEEPDIVE';
+		const GET_KEY5_DEEPDIVE = 'GET_KEY5_DEEPDIVE';
+
+		
+		//TOTAL
+		const GET_TOTAL_FYs = 'GET_TOTAL_FYs';
+		const GET_TOTALUFR_FYs = 'GET_TOTALUFR_FYs';
+		
+		/* PROGRAM DATA ACTIONS*/
+		
+		//PROGRAM
+		const GET_PROGRAM_PROPERTIES = 'GET_PROGRAM_PROPERTIES';
+		const GET_PROGRAM_ROOTS = 'GET_PROGRAM_ROOTS';
+		const GET_PROGRAM_KEY4 = 'GET_PROGRAM_KEY4';
+		const GET_PROGRAM_KEY5 = 'GET_PROGRAM_KEY5';
+		const GET_PROGRAM_RDTE = 'GET_PROGRAM_RDTE';   const GET_PROGRAM_RDTEUFR = 'GET_PROGRAM_RDTEUFR';
+		const GET_PROGRAM_PROC = 'GET_PROGRAM_PROC';   const GET_PROGRAM_PROCUFR = 'GET_PROGRAM_PROCUFR';
+		const GET_PROGRAM_OTHER = 'GET_PROGRAM_OTHER'; const GET_PROGRAM_OTHERUFR = 'GET_PROGRAM_OTHERUFR';
+		const GET_PROGRAM_TOTAL = 'GET_PROGRAM_TOTAL'; const GET_PROGRAM_TOTALUFR = 'GET_PROGRAM_TOTALUFR';
+		const GET_PROGRAM_KEY4_DEEPDIVE = 'GET_PROGRAM_KEY4_DEEPDIVE'; 
+		const GET_PROGRAM_KEY5_DEEPDIVE = 'GET_PROGRAM_KEY5_DEEPDIVE'; 
+
+
+		/*AUTHORITATIVE DATA ACTION CREATORS*/
+
+		
+		//ROOT
+		function getRootAction(root){//ROOT Actions
+
+			return{
+				type: GET_ROOT,
+				root
+			}
+		}
+
+		
+		//KEY 4
+		function getKey4Action(key4){//Key4 Actions
+
+			return{
+				type: GET_KEY4,
+				key4
+			}
+		}
+		
+		//KEY 5
+		function getKey5Action(key5){//Key5 Actions
+
+			return{
+				type: GET_KEY5,
+				key5
+			}
+		}
+
+		//KEY 4 DEEP DIVE
+		function getDeepDiveKey4Action(key4){//DeepDive Key4 Actions
+
+			return{
+				type: GET_KEY4_DEEPDIVE,
+				key4
+			}
+		}
+
+		//KEY 5 DEEP DIVE
+		function getDeepDiveKey5Action(key5){//DeepDive Key5 Actions
+
+			return{
+				type: GET_KEY5_DEEPDIVE,
+				key5
+			}
+		}
+
+
+
+
+		
+		//RDTE	
+		function getRDTEFYAction(appn){//RDTE FUNDED FYs
+
+			return{
+				type: GET_RDTE_FYs,
+				appn
+			}
+		}
+		
+		function getRDTEFYUFRAction(appn){//RDTE CRITICAL FYs
+
+			return{
+				type: GET_RDTEUFR_FYs,
+				appn
+			}
+		}	
+		
+		function getRDTEAPPNAction(appn){//RDTE FUNDED ACTIONS
+
+			return{
+				type: GET_RDTE,
+				appn
+			}
+		}		
+		function getRDTEUFRAPPNAction(appn){//RDTE CRITICAL ACTIONS
+
+			return{
+				type: GET_RDTEUFR,
+				appn
+			}
+		}	
+		function removeRDTEAPPNAction(id){//REMOVE RDTE FUNDED ACTION
+
+			return{
+				type: REMOVE_RDTE,
+				id
+			}
+		}		
+		function removeRDTEUFRAPPNAction(id){//REMOVE RDTE CRITICAL ACTION
+
+			return{
+				type: REMOVE_RDTEUFR,
+				id
+			}
+		}
+
+
+
+
+		
+		//PROC
+		function getPROCFYAction(appn){//PROC FUNDED FYs
+
+			return{
+				type: GET_PROC_FYs,
+				appn
+			}
+		}	
+		function getPROCFYUFRAction(appn){//PROC CRITICAL FYs
+
+			return{
+				type: GET_PROCUFR_FYs,
+				appn
+			}
+		}
+		
+		function getACFTAPPNAction(appn){//ACFT FUNDED ACTIONS
+
+			return{
+				type: GET_ACFT,
+				appn
+			}
+		}		
+		function getACFTUFRAPPNAction(appn){//ACFT CRITICAL ACTIONS
+
+			return{
+				type: GET_ACFTUFR,
+				appn
+			}
+		}		
+		function removeACFTAPPNAction(id){//REMOVE ACFT FUNDED ACTION
+
+			return{
+				type: REMOVE_ACFT,
+				id
+			}
+		}	
+		function removeACFTUFRAPPNAction(id){//REMOVE ACFT CRITICAL ACTION
+
+			return{
+				type: REMOVE_ACFTUFR,
+				id
+			}
+		}
+
+		
+		
+
+		
+		function getAMMOAPPNAction(appn){//AMMO FUNDED ACTIONS
+
+			return{
+				type: GET_AMMO,
+				appn
+			}
+		}		
+		function getAMMOUFRAPPNAction(appn){//AMMO CRITICAL ACTIONS
+
+			return{
+				type: GET_AMMOUFR,
+				appn
+			}
+		}		
+		function removeAMMOAPPNAction(id){//REMOVE AMMO FUNDED ACTION
+
+			return{
+				type: REMOVE_AMMO,
+				id
+			}
+		}	
+		function removeAMMOUFRAPPNAction(id){//REMOVE AMMO CRITICAL ACTION
+
+			return{
+				type: REMOVE_AMMOUFR,
+				id
+			}
+		}
+
+	
+		function getMSLSAPPNAction(appn){//MSLS FUNDED ACTIONS
+
+			return{
+				type: GET_MSLS,
+				appn
+			}
+		}		
+		function getMSLSUFRAPPNAction(appn){//MSLS CRITICAL ACTIONS
+
+			return{
+				type: GET_MSLSUFR,
+				appn
+			}
+		}		
+		function removeMSLSAPPNAction(id){//REMOVE MSLS FUNDED ACTION
+
+			return{
+				type: REMOVE_MSLS,
+				id
+			}
+		}	
+		function removeMSLSUFRAPPNAction(id){//REMOVE MSLS CRITICAL ACTION
+
+			return{
+				type: REMOVE_MSLSUFR,
+				id
+			}
+		}
+
+
+		
+		function getOPAAPPNAction(appn){//OPA FUNDED ACTIONS
+
+			return{
+				type: GET_OPA,
+				appn
+			}
+		}	
+		function getOPAUFRAPPNAction(appn){//OPA CRITICAL ACTIONS
+
+			return{
+				type: GET_OPAUFR,
+				appn
+			}
+		}	
+		function removeOPAAPPNAction(id){//REMOVE OPA FUNDED ACTION
+
+			return{
+				type: REMOVE_OPA,
+				id
+			}
+		}	
+		function removeOPAUFRAPPNAction(id){//REMOVE OPA CRITICAL ACTION
+
+			return{
+				type: REMOVE_OPAUFR,
+				id
+			}
+		}
+
+
+		
+		function getWTCVAPPNAction(appn){//WTCV FUNDED ACTIONS
+
+			return{
+				type: GET_WTCV,
+				appn
+			}
+		}		
+		function getWTCVUFRAPPNAction(appn){//WTCV CRITICAL ACTIONS
+
+			return{
+				type: GET_WTCVUFR,
+				appn
+			}
+		}		
+		function removeWTCVAPPNAction(id){//REMOVE WTCV FUNDED ACTION
+
+			return{
+				type: REMOVE_WTCV,
+				id
+			}
+		}	
+		function removeWTCVUFRAPPNAction(id){//REMOVE WTCV CRITICAL ACTION
+
+			return{
+				type: REMOVE_WTCVUFR,
+				id
+			}
+		}
+
+
+		
+		
+		//OTHER
+		function getOTHERFYAction(appn){//OTHER FYs
+
+			return{
+				type: GET_OTHER_FYs,
+				appn
+			}
+		}
+		
+		function getOTHERFYUFRAction(appn){//OTHER CRITICAL FYs
+
+			return{
+				type: GET_OTHERUFR_FYs,
+				appn
+			}
+		}
+
+
+
+
+		function getAWCFAPPNAction(appn){//AWCF FUNDED ACTIONS
+
+			return{
+				type: GET_AWCF,
+				appn
+			}
+		}
+		
+		function getAWCFUFRAPPNAction(appn){//AWCF CRITICAL ACTIONS
+
+			return{
+				type: GET_AWCFUFR,
+				appn
+			}
+		}
+		function removeAWCFAPPNAction(id){//REMOVE AWCF FUNDED ACTION
+
+			return{
+				type: REMOVE_AWCF,
+				id
+			}
+		}	
+		function removeAWCFUFRAPPNAction(id){//REMOVE AWCF CRITICAL ACTION
+
+			return{
+				type: REMOVE_AWCFUFR,
+				id
+			}
+		}
+
+	
+		function getCHMCAPPNAction(appn){//CHMC FUNDED ACTIONS
+
+			return{
+				type: GET_CHMC,
+				appn
+			}
+		}
+		
+		function getCHMCUFRAPPNAction(appn){//CHMC CRITICAL ACTIONS
+
+			return{
+				type: GET_CHMCUFR,
+				appn
+			}
+		}
+		function removeCHMCAPPNAction(id){//REMOVE CHMC FUNDED ACTION
+
+			return{
+				type: REMOVE_CHMC,
+				id
+			}
+		}	
+		function removeCHMCUFRAPPNAction(id){//REMOVE CHMC CRITICAL ACTION
+
+			return{
+				type: REMOVE_CHMCUFR,
+				id
+			}
+		}
+
+		
+		
+		
+		
+	
+		function getCHMDAPPNAction(appn){//CHMD FUNDED ACTIONS
+
+			return{
+				type: GET_CHMD,
+				appn
+			}
+		}
+		
+		function getCHMDUFRAPPNAction(appn){//CHMD CRITICAL ACTIONS
+
+			return{
+				type: GET_CHMDUFR,
+				appn
+			}
+		}
+		function removeCHMDAPPNAction(id){//REMOVE CHMD FUNDED ACTION
+
+			return{
+				type: REMOVE_CHMD,
+				id
+			}
+		}	
+		function removeCHMDUFRAPPNAction(id){//REMOVE CHMD CRITICAL ACTION
+
+			return{
+				type: REMOVE_CHMDUFR,
+				id
+			}
+		}
+
+	
+		function getMCAAPPNAction(appn){//MCA FUNDED ACTIONS
+
+			return{
+				type: GET_MCA,
+				appn
+			}
+		}	
+		function getMCAUFRAPPNAction(appn){//MCA CRITICAL ACTIONS
+
+			return{
+				type: GET_MCAUFR,
+				appn
+			}
+		}		
+		function removeMCAAPPNAction(id){//REMOVE MCA FUNDED ACTION
+
+			return{
+				type: REMOVE_MCA,
+				id
+			}
+		}	
+		function removeMCAUFRAPPNAction(id){//REMOVE MCA CRITICAL ACTION
+
+			return{
+				type: REMOVE_MCAUFR,
+				id
+			}
+		}
+
+		
+	
+		function getNGPAAPPNAction(appn){//NGPA FUNDED ACTIONS
+
+			return{
+				type: GET_NGPA,
+				appn
+			}
+		}	
+		function getNGPAUFRAPPNAction(appn){//NGPA CRITICAL ACTIONS
+
+			return{
+				type: GET_NGPAUFR,
+				appn
+			}
+		}
+		function removeNGPAAPPNAction(id){//REMOVE NGPA FUNDED ACTION
+
+			return{
+				type: REMOVE_NGPA,
+				id
+			}
+		}	
+		function removeNGPAUFRAPPNAction(id){//REMOVE NGPA CRITICAL ACTION
+
+			return{
+				type: REMOVE_NGPAUFR,
+				id
+			}
+		}
+
+
+		function getOMAAPPNAction(appn){//OMA FUNDED ACTIONS
+
+			return{
+				type: GET_OMA,
+				appn
+			}
+		}	
+		function getOMAUFRAPPNAction(appn){//OMA UFR ACTIONS
+
+			return{
+				type: GET_OMAUFR,
+				appn
+			}
+		}
+		function removeOMAAPPNAction(id){//REMOVE OMA FUNDED ACTION
+
+			return{
+				type: REMOVE_OMA,
+				id
+			}
+		}	
+		function removeOMAUFRAPPNAction(id){//REMOVE OMA CRITICAL ACTION
+
+			return{
+				type: REMOVE_OMAUFR,
+				id
+			}
+		}
+
+
+		function getOMNGAPPNAction(appn){//OMNG FUNDED ACTIONS
+
+			return{
+				type: GET_OMNG,
+				appn
+			}
+		}	
+		function getOMNGUFRAPPNAction(appn){//OMNG CRITICAL ACTIONS
+
+			return{
+				type: GET_OMNGUFR,
+				appn
+			}
+		}
+		function removeOMNGAPPNAction(id){//REMOVE OMNG FUNDED ACTION
+
+			return{
+				type: REMOVE_OMNG,
+				id
+			}
+		}	
+		function removeOMNGUFRAPPNAction(id){//REMOVE OMNG CRITICAL ACTION
+
+			return{
+				type: REMOVE_OMNGUFR,
+				id
+			}
+		}
+
+	
+		function getOMARAPPNAction(appn){//OMAR FUNDED ACTIONS
+
+			return{
+				type: GET_OMAR,
+				appn
+			}
+		}	
+		function getOMARUFRAPPNAction(appn){//OMAR CRITICAL ACTIONS
+
+			return{
+				type: GET_OMARUFR,
+				appn
+			}
+		}
+		function removeOMARAPPNAction(id){//REMOVE OMAR FUNDED ACTION
+
+			return{
+				type: REMOVE_OMAR,
+				id
+			}
+		}	
+		function removeOMARUFRAPPNAction(id){//REMOVE OMAR CRITICAL ACTION
+
+			return{
+				type: REMOVE_OMARUFR,
+				id
+			}
+		}
+
+		
+		function getRDTAAPPNAction(appn){//RDTA FUNDED ACTIONS
+
+			return{
+				type: GET_RDTA,
+				appn
+			}
+		}	
+		function getRDTAUFRAPPNAction(appn){//RDTA CRITICAL ACTIONS
+
+			return{
+				type: GET_RDTAUFR,
+				appn
+			}
+		}
+		function removeRDTAAPPNAction(id){//REMOVE RDTA FUNDED ACTION
+
+			return{
+				type: REMOVE_RDTA,
+				id
+			}
+		}	
+		function removeRDTAUFRAPPNAction(id){//REMOVE RDTA CRITICAL ACTION
+
+			return{
+				type: REMOVE_RDTAUFR,
+				id
+			}
+		}
+
+		
+		function getRPAAPPNAction(appn){//RPA FUNDED ACTIONS
+
+			return{
+				type: GET_RPA,
+				appn
+			}
+		}
+	
+		function getRPAUFRAPPNAction(appn){//RPA CRITICAL ACTIONS
+
+			return{
+				type: GET_RPAUFR,
+				appn
+			}
+		}
+		function removeRPAAPPNAction(id){//REMOVE RPA FUNDED ACTION
+
+			return{
+				type: REMOVE_RPA,
+				id
+			}
+		}	
+		function removeRPAUFRAPPNAction(id){//REMOVE RPA CRITICAL ACTION
+
+			return{
+				type: REMOVE_RPAUFR,
+				id
+			}
+		}
+
+		
+		function getWEDGAPPNAction(appn){//WEDG FUNDED ACTIONS
+
+			return{
+				type: GET_WEDG,
+				appn
+			}
+		}	
+		function getWEDGUFRAPPNAction(appn){//WEDG CRITICAL ACTIONS
+
+			return{
+				type: GET_WEDGUFR,
+				appn
+			}
+		}
+		function removeWEDGAPPNAction(id){//REMOVE WEDG FUNDED ACTION
+
+			return{
+				type: REMOVE_WEDG,
+				id
+			}
+		}	
+		function removeWEDGUFRAPPNAction(id){//REMOVE WEDG CRITICAL ACTION
+
+			return{
+				type: REMOVE_WEDGUFR,
+				id
+			}
+		}
+
+
+		//TOTAL 
+		function getTOTALFYAction(appn){//TOTAL FYs
+
+			return{
+				type: GET_TOTAL_FYs,
+				appn
+			}
+		}
+		
+		function getTOTALFYUFRAction(appn){//TOTAL CRITICAL FYs
+
+			return{
+				type: GET_TOTALUFR_FYs,
+				appn
+			}
+		}
+		
+		/* PROGRAM DATA ACTION CREATORS */
+		
+		//PROGRAM PROPERTIES
+		function getProgramPropertiesAction(program){//PROGRAM PROPERTIES
+
+			return{
+				type: GET_PROGRAM_PROPERTIES,
+				program
+			}
+		}
+		
+		function getProgramRootsAction(program){//PROGRAM ROOTS
+
+			return{
+				type: GET_PROGRAM_ROOTS,
+				program
+			}
+		}
+		
+		function getProgramKey4Action(program){//PROGRAM KEY4
+
+			return{
+				type: GET_PROGRAM_KEY4,
+				program
+			}
+		}
+		
+		function getProgramKey5Action(program){//PROGRAM KEY5
+
+			return{
+				type: GET_PROGRAM_KEY5,
+				program
+			}
+		}
+
+		function getProgramKey4DeepDiveAction(program){//PROGRAM KEY4 Deep Dive
+
+			return{
+				type: GET_PROGRAM_KEY4_DEEPDIVE,
+				program
+			}
+		}
+
+		function getProgramKey5DeepDiveAction(program){//PROGRAM KEY5 Deep Dive
+
+			return{
+				type: GET_PROGRAM_KEY5_DEEPDIVE,
+				program
+			}
+		}
+
+
+		
+		function getProgramRDTEAction(program){//PROGRAM RDTE
+
+			return{
+				type: GET_PROGRAM_RDTE,
+				program
+			}
+		}
+		
+		function getProgramRDTEUFRAction(program){//PROGRAM RDTE UFR
+
+			return{
+				type: GET_PROGRAM_RDTEUFR,
+				program
+			}
+		}
+		
+		function getProgramPROCAction(program){//PROGRAM PROC
+
+			return{
+				type: GET_PROGRAM_PROC,
+				program
+			}
+		}
+		
+		function getProgramPROCUFRAction(program){//PROGRAM PROC UFR
+
+			return{
+				type: GET_PROGRAM_PROCUFR,
+				program
+			}
+		}
+		
+		function getProgramOTHERAction(program){//PROGRAM OTHER
+
+			return{
+				type: GET_PROGRAM_OTHER,
+				program
+			}
+		}
+		
+		function getProgramOTHERUFRAction(program){//PROGRAM OTHER UFR
+
+			return{
+				type: GET_PROGRAM_OTHERUFR,
+				program
+			}
+		}
+		
+		function getProgramTOTALAction(program){//PROGRAM TOTAL 
+
+			return{
+				type: GET_PROGRAM_TOTAL,
+				program
+			}
+		}
+		
+		function getProgramTOTALUFRAction(program){//PROGRAM TOTAL UFR
+
+			return{
+				type: GET_PROGRAM_TOTALUFR,
+				program
+			}
+		}
+
+
+
+
+		/* AUTHORITATIVE DATA REDUCERS*/
+		
+		function rootActions (state = [], action){ //ROOT 
+
+			switch(action.type){
+				case GET_ROOT :
+						return state.concat([action.root])
+				default : 
+					return state
+
+
+			}
+		}
+
+		
+		function key4Actions (state = [], action){ //KEY4 
+
+			switch(action.type){
+				case GET_KEY4 :
+						return state.concat([action.key4])
+				default : 
+					return state
+
+
+			}
+		}
+
+		function key4DeepDiveActions (state = [], action){ //KEY4 DEEP DIVE
+
+			switch(action.type){
+				case GET_KEY4_DEEPDIVE :
+						return state.concat([action.key4])
+				default : 
+					return state
+
+
+			}
+		}
+
+		
+		function key5Actions (state = [], action){ //KEY5
+
+			switch(action.type){
+				case GET_KEY5 :
+						return state.concat([action.key5])
+				default : 
+					return state
+
+
+			}
+		}
+
+		function key5DeepDiveActions (state = [], action){ //KEY5 DEEP DIVE 
+
+			switch(action.type){
+				case GET_KEY5_DEEPDIVE :
+						return state.concat([action.key5])
+				default : 
+					return state
+
+
+			}
+		}
+
+
+		
+		//RDTE
+		function RDTEFYActions (state = [], action){//RDTE FUNDED FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_RDTE_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+
+
+			}
+		}
+		
+		function RDTEFYUFRActions (state = [], action){//RDTE CRITICAL FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_RDTEUFR_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+
+
+			}
+		}
+
+
+
+		function appnRDTEActions (state = [], action){//RDTE FUNDED
+
+			switch(action.type){
+				
+				case GET_RDTE :
+						return state.concat([action.appn])
+						
+				case REMOVE_RDTE :					
+					return 	_.filter(state, function(appn) { return appn.id !== action.id })
+					
+				default : 
+					return state
+
+
+
+			}
+		}
+		
+		function appnRDTEUFRActions (state = [], action){//RDTE CRITICAL FUNDED
+				switch(action.type){
+				
+					case GET_RDTEUFR :
+						return state.concat([action.appn])
+						
+					case REMOVE_RDTEUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		
+		//PROC
+		function PROCFYActions (state = [], action){//PROC FUNDED FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_PROC_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+			}
+		}
+		
+		function PROCFYUFRActions (state = [], action){//PROC CRITICAL FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_PROCUFR_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+			}
+		}
+
+
+		function appnACFTActions (state = [], action){//ACFT FUNDED(PROC)
+				switch(action.type){
+				
+					case GET_ACFT :
+						return state.concat([action.appn])
+						
+					case REMOVE_ACFT :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+					
+
+					default : 
+						return state
+
+
+					
+				}
+		
+
+		}
+		
+		function appnACFTUFRActions (state = [], action){//ACFT CRITICAL(PROC)
+				switch(action.type){
+				
+					case GET_ACFTUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_ACFTUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+
+
+					
+				}
+		
+
+		}
+
+		
+		function appnAMMOActions (state = [], action){//AMMO FUNDED(PROC)
+				switch(action.type){
+				
+					case GET_AMMO :
+						return state.concat([action.appn])
+					
+					case REMOVE_AMMO :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+					
+				}
+		
+
+		}
+		
+		function appnAMMOUFRActions (state = [], action){//AMMO CRITICAL(PROC)
+				switch(action.type){
+				
+					case GET_AMMOUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_AMMOUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+
+
+					
+				}
+		
+
+		}
+
+		
+		function appnMSLSActions (state = [], action){//MSLS FUNDED(PROC)
+				switch(action.type){
+				
+					case GET_MSLS :
+						return state.concat([action.appn])
+						
+					case REMOVE_MSLS :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+					
+					
+
+					default : 
+						return state			
+				}
+		}
+		
+		function appnMSLSUFRActions (state = [], action){//MSLS CRITICAL(PROC)
+				switch(action.type){
+				
+					case GET_MSLSUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_MSLSUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state			
+				}
+		}
+
+
+		function appnOPAActions (state = [], action){//OPA FUNDED(PROC)
+				switch(action.type){
+				
+					case GET_OPA :
+						return state.concat([action.appn])
+					
+					case REMOVE_OPA :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnOPAUFRActions (state = [], action){//OPA CRITICAL(PROC)
+				switch(action.type){
+				
+					case GET_OPAUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_OPAUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnWTCVActions (state = [], action){//WTCV FUNDED (PROC)
+				switch(action.type){
+				
+					case GET_WTCV :
+						return state.concat([action.appn])
+					
+					case REMOVE_WTCV :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnWTCVUFRActions (state = [], action){//WTCV CRITICAL (PROC)
+				switch(action.type){
+				
+					
+					case GET_WTCVUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_WTCVUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		//OTHER
+		function OTHERFYActions (state = [], action){//OTHER FUNDED FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_OTHER_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+			}
+		}
+		
+		function OTHERFYUFRActions (state = [], action){//OTHER CRITICAL FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_OTHERUFR_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+			}
+		}
+
+
+		function appnAWCFActions (state = [], action){//AWCF FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_AWCF :
+						return state.concat([action.appn])
+					
+					case REMOVE_AWCF :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnAWCFUFRActions (state = [], action){//AWCF CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_AWCFUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_AWCFUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+					
+					
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		function appnCHMCActions (state = [], action){//CHMC FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_CHMC :
+						return state.concat([action.appn])
+					
+					case REMOVE_CHMC :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnCHMCUFRActions (state = [], action){//CHMC CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_CHMCUFR :
+						return state.concat([action.appn])
+						
+					case REMOVE_CHMCUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+
+		function appnCHMDActions (state = [], action){//CHMD FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_CHMD :
+						return state.concat([action.appn])
+					
+					case REMOVE_CHMD :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnCHMDUFRActions (state = [], action){//CHMD CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_CHMDUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_CHMDUFR :					
+						return 	_.filter(state, function(appn) { return appn.id !== action.id })
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+
+		function appnMCAActions (state = [], action){//MCA FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_MCA :
+						return state.concat([action.appn])
+					
+					case REMOVE_MCA :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnMCAUFRActions (state = [], action){//MCA CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_MCAUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_MCAUFR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		function appnNGPAActions (state = [], action){//NGPA FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_NGPA :
+						return state.concat([action.appn])
+					
+					case REMOVE_NGPA :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnNGPAUFRActions (state = [], action){//NGPA CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_NGPAUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_NGPAUFR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+
+		function appnOMAActions (state = [], action){//OMA FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_OMA :
+						return state.concat([action.appn])
+					
+					case REMOVE_OMA :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnOMAUFRActions (state = [], action){//OMA CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_OMAUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_OMAUFR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		function appnOMNGActions (state = [], action){//OMNG FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_OMNG :
+						return state.concat([action.appn])
+						
+					case REMOVE_OMNG :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnOMNGUFRActions (state = [], action){//OMNG CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_OMNGUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_OMNGUFR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		function appnOMARActions (state = [], action){//OMAR FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_OMAR :
+						return state.concat([action.appn])
+					
+					case REMOVE_OMAR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnOMARUFRActions (state = [], action){//OMAR CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_OMARUFR :
+						return state.concat([action.appn])
+
+					case REMOVE_OMARUFR :
+						return state.concat([action.appn])
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		function appnRDTAActions (state = [], action){//RDTA FUNDED OTHER)
+				switch(action.type){
+				
+					case GET_RDTA :
+						return state.concat([action.appn])
+					
+					case REMOVE_RDTA :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnRDTAUFRActions (state = [], action){//RDTA CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_RDTAUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_RDTAUFR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		function appnRPAActions (state = [], action){//RPA FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_RPA :
+						return state.concat([action.appn])
+					
+					case REMOVE_RPA :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnRPAUFRActions (state = [], action){//RPA CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_RPAUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_RPAUFR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		
+		function appnWEDGActions (state = [], action){//WEDG FUNDED(OTHER)
+				switch(action.type){
+				
+					case GET_WEDG :
+						return state.concat([action.appn])
+					
+					case REMOVE_WEDG :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+		
+		function appnWEDGUFRActions (state = [], action){//WEDG CRITICAL(OTHER)
+				switch(action.type){
+				
+					case GET_WEDGUFR :
+						return state.concat([action.appn])
+					
+					case REMOVE_WEDGUFR :
+						return state.concat([action.appn])
+
+
+					default : 
+						return state
+				
+				}
+		}
+
+		//TOTAL
+		function TOTALFYActions (state = [], action){//TOTAL FUNDED FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_TOTAL_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+			}
+		}
+		
+		function TOTALFYUFRActions (state = [], action){//TOTAL CRITICAL FY ACTIONS
+
+			switch(action.type){
+				
+				case GET_TOTALUFR_FYs :
+						return state.concat([action.appn])
+					
+				default : 
+					return state
+
+			}
+		}
+		
+		/* PROGRAM DATA REDUCERS */
+		function programPropertiesActions (state = [], action){//PROGRAM PROPERTIES
+
+			switch(action.type){
+				case GET_PROGRAM_PROPERTIES :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programRootActions (state = [], action){//PROGRAM ROOTS
+
+			switch(action.type){
+				case GET_PROGRAM_ROOTS :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programKey4Actions (state = [], action){//PROGRAM KEY4
+
+			switch(action.type){
+				case GET_PROGRAM_KEY4 :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+
+		function programKey4DeepDiveActions (state = [], action){//PROGRAM KEY4
+
+			switch(action.type){
+				case GET_PROGRAM_KEY4_DEEPDIVE :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+
+		}
+
+		function programKey5DeepDiveActions (state = [], action){//PROGRAM KEY5
+
+			switch(action.type){
+				case GET_PROGRAM_KEY5_DEEPDIVE :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+
+		}
+		
+		function programKey5Actions (state = [], action){//PROGRAM KEY5
+
+			switch(action.type){
+				case GET_PROGRAM_KEY5 :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+
+		
+		function programRDTEActions (state = [], action){//PROGRAM RDTE
+
+			switch(action.type){
+				case GET_PROGRAM_RDTE :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programRDTEUFRActions (state = [], action){//PROGRAM RDTE UFR
+
+			switch(action.type){
+				case GET_PROGRAM_RDTEUFR :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programPROCActions (state = [], action){//PROGRAM PROC
+
+			switch(action.type){
+				case GET_PROGRAM_PROC :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programPROCUFRActions (state = [], action){//PROGRAM PROC UFR
+
+			switch(action.type){
+				case GET_PROGRAM_PROCUFR :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programOTHERActions (state = [], action){//PROGRAM OTHER
+
+			switch(action.type){
+				case GET_PROGRAM_OTHER :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programOTHERUFRActions (state = [], action){//PROGRAM OTHER UFR
+
+			switch(action.type){
+				case GET_PROGRAM_OTHERUFR :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programTOTALActions (state = [], action){//PROGRAM TOTAL
+
+			switch(action.type){
+				case GET_PROGRAM_TOTAL :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programTOTALUFRActions (state = [], action){//PROGRAM TOTAL UFR
+
+			switch(action.type){
+				case GET_PROGRAM_TOTALUFR :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programDEEPDIVEActions (state = [], action){//PROGRAM DEEPDIVE
+
+			switch(action.type){
+				case GET_PROGRAM_DEEPDIVE :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		function app (state = {}, action){
+			return {
+				
+				/* AUTHORITATIVE DATA ENTITIES */
+				
+				//ROOT (DYNAMIC ENTITY)
+				ROOT: rootActions(state.ROOT, action),
+
+				
+				//KEY 4 (DYNAMIC ENTITY)
+				KEY4: key4Actions(state.KEY4, action),
+				KEY4DEEPDIVE: key4DeepDiveActions(state.KEY4DEEPDIVE, action),
+
+				
+				//KEY 5 (DYNAMIC ENTITY)
+				KEY5: key5Actions(state.KEY5, action),
+				KEY5DEEPDIVE: key5DeepDiveActions(state.KEY5DEEPDIVE, action),
+
+
+			
+				//RDTE FUNDED
+				RDTEFY: RDTEFYActions(state.RDTEFY, action),//RDTE FYs
+				RDTE: 	appnRDTEActions(state.RDTE, action),//RDTE 
+				
+				
+				//PROC FUNDED
+				PROCFY: PROCFYActions(state.PROCFY, action),//PROC FYs
+				ACFT: 	appnACFTActions(state.ACFT, action),//ACFT
+				AMMO: 	appnAMMOActions(state.AMMO, action),//AMMO 
+				MSLS: 	appnMSLSActions(state.MSLS, action),//MSLS 
+				OPA: 	appnOPAActions(state.OPA, action),//OPA 
+				WTCV: 	appnWTCVActions(state.WTCV, action),//WTCV 
+
+				
+				//OTHER FUNDED
+				OTHERFY: OTHERFYActions(state.OTHERFY, action),//OTHER FYs
+				AWCF: 	 appnAWCFActions(state.AWCF, action),//AWCF 
+				CHMC: 	 appnCHMCActions(state.CHMC, action),//CHMC 
+				CHMD: 	 appnCHMDActions(state.CHMD, action),//CHMD
+				MCA: 	 appnMCAActions(state.MCA, action),//MCA 
+				NGPA: 	 appnNGPAActions(state.NGPA, action),//NGPA 
+				OMA: 	 appnOMAActions(state.OMA, action),//OMA 
+				OMNG: 	 appnOMNGActions(state.OMNG, action),//OMNG
+				OMAR: 	 appnOMARActions(state.OMAR, action),//OMAR 
+				RDTA: 	 appnRDTAActions(state.RDTA, action),//RDTA 
+				RPA: 	 appnRPAActions(state.RPA, action),//RPA 
+				WEDG: 	 appnWEDGActions(state.WEDG, action),//WEDG
+
+				//RDTE CRITICAL
+				RDTEFYUFR: RDTEFYUFRActions(state.RDTEFYUFR, action),//RDTE FYs
+				RDTEUFR:   appnRDTEUFRActions(state.RDTEUFR, action),//RDTE
+
+				
+				//PROC CRITICAL
+				PROCFYUFR: PROCFYUFRActions(state.PROCFYUFR, action),//PROC FYs
+				ACFTUFR:   appnACFTUFRActions(state.ACFTUFR, action),//ACFT 
+				AMMOUFR:   appnAMMOUFRActions(state.AMMOUFR, action),//AMMO 
+				MSLSUFR:   appnMSLSUFRActions(state.MSLSUFR, action),//MSLS
+				OPAUFR:    appnOPAUFRActions(state.OPAUFR, action),//OPA 
+				WTCVUFR:   appnWTCVUFRActions(state.WTCVUFR, action),//WTCV 
+
+				
+				//OTHER CRITICAL
+				OTHERFYUFR: OTHERFYUFRActions(state.OTHERFYUFR, action),//OTHER  FYs
+				AWCFUFR:    appnAWCFUFRActions(state.AWCFUFR, action),//AWCF 
+				CHMCUFR:    appnCHMCUFRActions(state.CHMCUFR, action),//CHMC 
+				CHMDUFR:    appnCHMDUFRActions(state.CHMDUFR, action),//CHMD C
+				MCAUFR: 	appnMCAUFRActions(state.MCAUFR, action),//MCA 
+				NGPAUFR:    appnNGPAUFRActions(state.NGPAUFR, action),//NGPA 
+				OMAUFR:     appnOMAUFRActions(state.OMAUFR, action),//OMA 
+				OMNGUFR:    appnOMNGUFRActions(state.OMNGUFR, action),//OMNG 
+				OMARUFR:    appnOMARUFRActions(state.OMARUFR, action),//OMAR
+				RDTAUFR:    appnRDTAUFRActions(state.RDTAUFR, action),//RDTA 
+				RPAUFR:     appnRPAUFRActions(state.RPAUFR, action),//RPA 
+				WEDGUFR:    appnWEDGUFRActions(state.WEDGUFR, action),//WEDG 
+				
+				//TOTAL 			
+				TOTALFY:    TOTALFYActions(state.TOTALFY, action),//TOTAL FUNDED FYs
+				TOTALFYUFR: TOTALFYUFRActions(state.TOTALFYUFR, action),//TOTAL CRITICAL FYs
+				
+				
+				/* PROGRAM DATA ENTITIES */
+				PROGRAM_PROPERTIES: programPropertiesActions(state.PROGRAM_PROPERTIES, action),//PROGRAM PROPERTIES
+				PROGRAM_ROOTS:      programRootActions(state.PROGRAM_ROOTS, action),//PROGRAM ROOTS
+				PROGRAM_KEY4:       programKey4Actions(state.PROGRAM_KEY4, action),//PROGRAM KEY4
+				PROGRAM_KEY5:       programKey5Actions(state.PROGRAM_KEY5, action),//PROGRAM KEY5
+				PROGRAM_RDTE:       programRDTEActions(state.PROGRAM_RDTE, action),//PROGRAM RDTE
+				PROGRAM_RDTEUFR:    programRDTEUFRActions(state.PROGRAM_RDTEUFR, action),//PROGRAM RDTEUFR
+				PROGRAM_PROC:       programPROCActions(state.PROGRAM_PROC, action),//PROGRAM PROC
+				PROGRAM_PROCUFR:    programPROCUFRActions(state.PROGRAM_PROCUFR, action),//PROGRAM PROCUFR
+				PROGRAM_OTHER:      programOTHERActions(state.PROGRAM_OTHER, action),//PROGRAM OTHER
+				PROGRAM_OTHERUFR:   programOTHERUFRActions(state.PROGRAM_OTHERUFR, action),//PROGRAM OTHERUFR
+				PROGRAM_TOTAL:    	programTOTALActions(state.PROGRAM_TOTAL, action),//PROGRAM TOTAL
+				PROGRAM_TOTALUFR:   programTOTALUFRActions(state.PROGRAM_TOTALUFR, action),//PROGRAM TOTALUFR
+				PROGRAM_KEY4_DEEPDIVE: programKey4DeepDiveActions(state.PROGRAM_KEY4_DEEPDIVE, action),//PROGRAM KEY4 DEEP DIVE
+				PROGRAM_KEY5_DEEPDIVE: programKey5DeepDiveActions(state.PROGRAM_KEY5_DEEPDIVE, action),//PROGRAM KEY5 DEEP DIVE
+
+
+
+
+
+
+
+			}
+		}
+
+
+
+		const store = createStore(app) //user invokes to return store
+
+		store.subscribe(() => {//detects state changes in store
+			console.log('The new state is: ', store.getState())
+		})
+
+		//dispatch actions
+		
+		
+		/* AUTHORITATIVE DATA DISPATCHES */
+		
+		//Get Root
+		store.dispatch(getRootAction({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))		
+		store.dispatch(getRootAction({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))
+
+
+		
+		
+		
+		//Get Key4 
+		store.dispatch(getKey4Action({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key4: "Key4",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))	
+		store.dispatch(getKey4Action({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key4: "Key4",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))
+		
+		//Get Key5
+		store.dispatch(getKey5Action({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key5: "Key5",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))	
+		store.dispatch(getKey5Action({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key5: "Key5",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))
+
+
+
+		
+		//Get RDTE Funded FY Vertical Data by Appropriation 
+		store.dispatch(getRDTEAPPNAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getRDTEAPPNAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000,
+
+		
+
+		}))
+
+		
+		//store.dispatch(removeRDTEAPPNAction(1))
+		
+		
+		
+		
+		
+		//Get RDTE Critical FY Vertical Data by Appropriation
+		store.dispatch(getRDTEUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		
+		store.dispatch(getRDTEUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+		
+
+		
+
+
+		
+		//Get ACFT Funded FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getACFTAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "ACFT",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getACFTAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "ACFT",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get ACFT Critical FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getACFTUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "ACFT",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getACFTUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "ACFT",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+		
+		//Get AMMO Funded FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getAMMOAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AMMO",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getAMMOAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AMMO",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get AMMO Critical FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getAMMOUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AMMO",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getAMMOUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AMMO",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get MSLS Funded FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getMSLSAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MSLS",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getMSLSAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MSLS",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get MSLS Critical FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getMSLSUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MSLS",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getMSLSUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MSLS",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+
+
+		
+		//Get OPA Funded FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getOPAAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OPA",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOPAAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OPA",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get OPA Critical FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getOPAUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OPA",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOPAUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OPA",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		//Get WTCV Funded FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getWTCVAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WTCV",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getWTCVAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WTCV",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get WTCV Critical FY Vertical Data by Appropriation (PROC)
+		store.dispatch(getWTCVUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WTCV",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getWTCVUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WTCV",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+
+		
+		//Get AWCF Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getAWCFAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AWCF",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getAWCFAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AWCF",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get AWCF Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getAWCFUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AWCF",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getAWCFUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "AWCF",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get CHMC Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getCHMCAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMC",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getCHMCAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMC",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get CHMC Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getCHMCUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMC",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getCHMCUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMC",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		
+		//Get CHMD Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getCHMDAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMD",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getCHMDAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMD",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get CHMD Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getCHMDUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMD",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		
+		store.dispatch(getCHMDUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "CHMD",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+		//Get MCA Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getMCAAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MCA",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		
+		store.dispatch(getMCAAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MCA",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get MCA Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getMCAUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MCA",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getMCAUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "MCA",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get NGPA Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getNGPAAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "NGPA",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getNGPAAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "NGPA",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get NGPA Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getNGPAUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "NGPA",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getNGPAUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "NGPA",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get OMA Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getOMAAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMA",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOMAAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMA",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get OMA Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getOMAUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMA",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOMAUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMA",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get OMNG Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getOMNGAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMNG",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOMNGAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMNG",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get OMNG Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getOMNGUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMNG",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOMNGUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMNG",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+		//Get OMAR Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getOMARAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMAR",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOMARAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMAR",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get OMAR Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getOMARUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMAR",
+			Root: "Root1",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getOMARUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OMAR",
+			Root: "Root2",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get RDTA Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getRDTAAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTA",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getRDTAAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTA",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get RDTA Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getRDTAUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTA",
+			Root: "Root1",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getRDTAUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTA",
+			Root: "Root2",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		
+		//Get RPA Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getRPAAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RPA",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getRPAAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RPA",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get RPA Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getRPAUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RPA",
+			Root: "Root1",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getRPAUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RPA",
+			Root: "Root2",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+		//Get WEDG Funded FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getWEDGAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WEDG",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getWEDGAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WEDG",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+
+
+		//Get WEDG Critical FY Vertical Data by Appropriation (OTHER)
+		store.dispatch(getWEDGUFRAPPNAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WEDG",
+			Root: "Root1",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+		store.dispatch(getWEDGUFRAPPNAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "WEDG",
+			Root: "Root2",
+			BO: "Critical",
+			FY19: [100, 200, 300, 400],
+			FY20: [100, 200, 300, 400],
+			FY21: [100, 200, 300, 400],
+			FY22: [100, 200, 300, 400],
+			FY23: [100, 200, 300, 400],
+			FY24: [100, 200, 300, 400],
+			FY25: [100, 200, 300, 400],
+			POM: 5000
+		}))
+
+		/*POM ALLOCATION TABLE*/
+		
+		//Get RDTE FUNDED FY 
+		store.dispatch(getRDTEFYAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))	
+		store.dispatch(getRDTEFYAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+
+		
+		//Get RDTE CRITICAL FY 
+		store.dispatch(getRDTEFYUFRAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		store.dispatch(getRDTEFYUFRAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		
+		
+		//Get PROC FUNDED FY 
+		store.dispatch(getPROCFYAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		
+		store.dispatch(getPROCFYAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+
+		
+		//Get PROC CRITICAL FY 
+		store.dispatch(getPROCFYUFRAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		store.dispatch(getPROCFYUFRAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		
+		//Get OTHER FUNDED FY 
+		store.dispatch(getOTHERFYAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		store.dispatch(getOTHERFYAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+
+		
+		//Get OTHER CRITICAL FY 
+		store.dispatch(getOTHERFYUFRAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		store.dispatch(getOTHERFYUFRAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+
+
+
+
+
+		//Get TOTAL FUNDED FY 
+		store.dispatch(getTOTALFYAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		store.dispatch(getTOTALFYAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+
+		
+		//Get TOTAL CRITICAL FY 
+		store.dispatch(getTOTALFYUFRAction({ 
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		store.dispatch(getTOTALFYUFRAction({ 
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			FY19: [100],
+			FY20: [200],
+			FY21: [300],
+			FY22: [400],
+			FY23: [500],
+			FY24: [600],
+			FY25: [700],
+			POM: 2800
+		}))
+		
+		/* PROGRAM DATA DISPATCHES*/
+		
+		//GET Program Properties
+		store.dispatch(getProgramPropertiesAction({
+			id:1,
+			Program : "Program Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: ["root 1", "root 2"],
+			Key4: ["key4 1", "key4 2"]	
+		}))
+		
+		//GET PROGRAM ROOTS		
+		store.dispatch(getProgramRootsAction({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))		
+		store.dispatch(getProgramRootsAction({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))
+		
+		//GET PROGRAM KEY4
+		store.dispatch(getProgramKey4Action({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key4: "Key4",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))	
+		store.dispatch(getProgramKey4Action({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key4: "Key4",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))
+		
+		//GET PROGRAM KEY5
+		store.dispatch(getProgramKey5Action({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key5: "Key5",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))	
+		store.dispatch(getProgramKey5Action({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Key5: "Key5",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			FY19ALLO: [100],
+			FY20ALLO: [200],
+			FY21ALLO: [300],
+			FY22ALLO: [400],
+			FY23ALLO: [500],
+			FY24ALLO: [600],
+			FY25ALLO: [700],
+			POM: 2800
+
+
+		}))
+
+		
+		//GET PROGRAM RDTE
+		store.dispatch(getProgramRDTEAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramRDTEAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+
+		
+
+		}))
+
+		store.dispatch(getProgramRDTEUFRAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramRDTEUFRAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "RDTE",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+
+		
+
+		}))
+
+		
+		//GET PROGRAM PROC
+		store.dispatch(getProgramPROCAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramPROCAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+
+		
+
+		}))
+		
+		//GET PROGRAM PROC UFR
+		store.dispatch(getProgramPROCUFRAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramPROCUFRAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "PROC",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100,],
+			FY25: [100],
+			POM: 5000,
+
+		
+
+		}))
+		
+		//GET PROGRAM OTHER 
+		store.dispatch(getProgramOTHERAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramOTHERAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+
+		
+
+		}))
+		
+		//GET PROGRAM OTHER UFR
+		store.dispatch(getProgramOTHERUFRAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramOTHERUFRAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			APPN: "OTHER",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,	
+
+		}))
+		
+		//GET PROGRAM TOTAL
+		store.dispatch(getProgramTOTALAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root1",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramTOTALAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root2",
+			BO:"Funded",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,	
+
+		}))
+		
+		//GET PROGRAM TOTAL UFR
+		store.dispatch(getProgramTOTALUFRAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root1",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramTOTALUFRAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root2",
+			BO:"Critical",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,	
+
+		}))
+
+		//Key 4 Deep Dive
+		store.dispatch(getDeepDiveKey4Action({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root1",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getDeepDiveKey4Action({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root2",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,	
+
+		}))
+
+		//Key 5 Deep Dive
+		store.dispatch(getDeepDiveKey5Action({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root1",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+
+		}))	
+		store.dispatch(getDeepDiveKey5Action({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root2",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,	
+
+		}))
+
+		//Program Key 4 Deep Dive
+		store.dispatch(getProgramKey4DeepDiveAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root1",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+				
+
+
+		}))	
+		store.dispatch(getProgramKey4DeepDiveAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root2",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,	
+
+		}))
+
+		//Key 5 Deep Dive
+		store.dispatch(getProgramKey5DeepDiveAction({ 
+					
+			id: 1,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root1",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,
+		
+
+		}))	
+		store.dispatch(getProgramKey5DeepDiveAction({ 
+					
+			id: 2,
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: "Root2",
+			FY19: [100],
+			FY20: [100],
+			FY21: [100],
+			FY22: [100],
+			FY23: [100],
+			FY24: [100],
+			FY25: [100],
+			POM: 5000,	
+
+		}))
+
+
+
+
+		
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+	
+
+
+
+
+		
+		
+		
+
+
+
+
+
+
+		
+		
+
+		
+
+	
+
+
+
+               
+
+        </script>
+
+        <!-- React App -->
+        <script type="text/babel">
+
+
+        </script>
+    </body>
+</html>

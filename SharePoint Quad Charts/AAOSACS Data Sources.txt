@@ -1,0 +1,37 @@
+Training Base Quantity for TDAs : TNG_Base_TDA : AAOSACS1
+BOIP - OTOE
+	COMPO1 : COMPO_1_OTOE : AAOSACS1 
+	COMPO2 : COMPO_2_OTOE : AAOSACS1
+	COMPO3 : COMPO_3_OTOE : AAOSACS1
+Army Pre-positioned Stock Unit Sets : ACT_SETS : AAOINVENTORY1
+APS Activity Sets : APS_OTOE : AAOINVENTORY1
+Army War Reserve Sustainment Stocks : WR : AA0INVENTORY1
+War Reserves Stocks for Allies : WRA : AAOINVENTORY1
+Operational Project Stocks : OPS : AAOINVENTORY1
+Repair Cycle Float : RCF : AAOINVENTORY1
+Operational Readiness Float : ORF : AAOINVENTORY1
+Other TDA Requirements : Other TDA : AAOINVENTORY1
+
+Total AAO : Total_ : AAOINVENTORY1
+Total APO : Total_ : AAOINVENTORY1
+Total RO  : Total_RO  : AAOSACS1
+
+Status : STATUS_ : AAOINVENTORY1
+QTY TYPE : QTY_TYPE : AAOINVENTORY1
+
+SACS TOTAL : SACS_TOTAL : AAOSACS1
+
+
+Business Rules
+LINA AAO Approved  10
+LINB AAO Approved   9
+LINB APO Approved   1
+
+AAO: 10(LINA AAO) + 9(LINB AAO) = 19    APO: 10(LINA AAO) + 1(LINB APO) = 11
+
+If LINA HAVE AAO AND NO APO
+ THEN LINA COUNT = APO
+
+
+
+

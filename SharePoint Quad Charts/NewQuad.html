@@ -1,0 +1,235 @@
+
+
+<link rel="stylesheet" href="//spcs3qa.kc.army.mil///code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="/asaalt/hqdag8/quad/code/css/buttonstyles.css">
+<script type="text/javascript"  src="/asaalt/hqdag8/quad/code/libs/jQuery_v3.3.1.js"></script>
+<script type="text/javascript"  src="/asaalt/hqdag8/quad/code/libs/pptxgen.js"></script>
+<script type="text/javascript"  src="/asaalt/hqdag8/quad/code/libs/jszip.min.js"></script>
+<script type="text/javascript"  src="/asaalt/hqdag8/quad/code/libs/polyfill.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="/asaalt/hqdag8/quad/code/libs/angular.min_v1.7.2.js"></script> 
+
+
+
+<script type="text/javascript" src="/asaalt/hqdag8/quad/code/libs/taffydb.js"></script>
+<script type="text/javascript" src="/asaalt/hqdag8/quad/code/js/QuadModule.js"></script>
+<script type="text/javascript" src="/asaalt/hqdag8/quad/code/js/AllQuadServices.js"></script>
+<script type="text/javascript" src="/asaalt/hqdag8/quad/code/js/Program/QuadOptionsControllers.js"></script>
+
+<div ng-app="app">
+	<div ng-controller="PageLoadCtrl as pageload"></div>
+	<div ng-controller="UserSelectCtrl as userSelect"></div>
+</div>
+
+
+
+
+
+<style>
+    #quadOptions {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    #quadOptions td, #quadOptions th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    /*
+    #quadOptions tr:nth-child(even){background-color: #f2f2f2;}
+    
+    #quadOptions tr:hover {background-color: #ddd;}
+    */
+    
+    #quadOptions th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        /*background-color: #4CAF50;*/
+        color: black;
+    }
+    </style>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Accordion - Default functionality</title>
+  
+  
+  
+<div id="accordion">
+
+        <h3>Build a Quad</h3>
+        <div>
+         <p style="font-weight:bold">
+         Building a new quad allows users to create quads for different organizations such as ManPower, S&T, Program and AMMO. 
+          Options include funding, selecting LINs and creating a new program.
+          </p>
+      
+          <table id="quadOptions">
+              <tr>
+                <th>Area</th>
+                <th>Portfolio</th>
+                <th id ="Title1"></th>
+              </tr>
+              <tr>
+                  <td>
+                      <select id="area1"></select>     
+          
+                  </td>
+                  <td>
+                      <select id="bos1"></select>
+                  </td>
+                  <td class="program1">
+
+                    <div>
+                            <span contenteditable="true" id="programInput">Type Command or Program Name Here</span>
+
+
+                    </div>
+      
+      
+                  </td>
+                </tr>
+
+
+            </table>
+
+            <br/>
+            <a href="#"><div id="submit1" class="blackbutton">Create New Quad</div></a>
+
+      
+      
+      
+        </div>
+        
+        <h3>Modify Existing Quad</h3>
+        <div>
+            <p style="font-weight:bold">
+                        Modifying existing quads allow users to edit quads for different organizations such as ManPower, S&T, Program and AMMO. 
+            Options include LIN selection for existing quads.
+            </p>
+      
+      
+            <table id="quadOptions">
+                <tr>
+                  <th>Area</th>
+                  <th>Portfolio</th>
+                  <th id ="Title2"></th>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="area2"></select>     
+            
+                    </td>
+                    <td>
+                        <select id="bos2"></select>
+                    </td>
+                    <td class="program2">
+        
+                        <select name="program" id="programLoad2"></select>
+        
+                    </td>
+                  </tr>
+  
+          
+              </table>
+        
+              <br/>
+              <a href="#"><div id="submit2" class="blackbutton">Modify Quad</div></a>
+  
+      
+        </div>
+        <h3>Quad Collaboration</h3>
+      
+        <div>
+      
+            <p style="font-weight:bold">
+                Make edits and collaborate with users regarding the quads.
+              </p>
+          
+      
+          
+            <table id="quadOptions">
+                <tr>
+                  <th>Area</th>
+                  <th>Portfolio</th>
+                  <th id ="Title3"></th>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="area3"></select>     
+            
+                    </td>
+                    <td>
+                        <select id="bos3"></select>
+                    </td>
+                    <td class="program3">
+        
+                        <select name="program" id="programLoad3"></select>
+        
+                    </td>
+                  </tr>
+          
+              </table>
+
+              <br/>
+              <a href="#"><div id="submit3" class="blackbutton">Go to Quad</div></a>
+  
+            
+      
+        </div>
+
+        <h3>Create Presentations</h3>
+      
+        <div>
+      
+            <p style="font-weight:bold">
+                Create Presentations for all areas: Programs, ManPower, AMMO and S&T
+              </p>
+          
+      
+          
+            <table id="quadOptions">
+                <tr>
+                  <th>Area</th>
+                  <th>Portfolio</th>
+                  <th id ="Title4"></th>
+                </tr>
+                <tr>
+                    <td>
+                        <select id="area4"></select>     
+            
+                    </td>
+                    <td>
+                            <fieldset style="height:100px;width:500px;overflow:auto" id="bos4"></fieldset>
+                    </td>
+
+                    <td>
+                            <fieldset style="height:100px;width:500px;overflow:auto" id="program4"></fieldset>
+                    </td>
+
+                  </tr>
+          
+              </table>
+
+              <br/>
+              <a href="#"><div id="submit4" class="blackbutton">Create Presentations</div></a>
+  
+            
+      
+        </div>
+
+
+        
+
+
+      
+
+</div>
+
+
+
+

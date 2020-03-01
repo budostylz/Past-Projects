@@ -1,0 +1,1 @@
+Key 4 do not display when BOS and Root is selected.

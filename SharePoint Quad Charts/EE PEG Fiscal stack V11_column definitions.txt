@@ -1,0 +1,147 @@
+Data Source: Fiscal Stack Master
+RN
+Key 4
+Key 4 plus Position
+SAG
+OSDPE
+OSDPE Desc
+Roll SSN
+Roll SSN Desc
+BOS
+ROOT
+MDEP
+APE
+APE Nomen
+APPN
+CMD
+CMD DESC
+BA
+BA Desc
+Detailed Position
+Position
+Status
+FY15
+FY16
+FY17
+FY18
+FY19
+FY20
+FY21
+FY22
+FY23
+FY24
+FY20-24
+Comment 1
+Comment 2
+CFT #
+CFT
+CFT LOE
+POC
+FY19
+FY20
+FY21
+FY22
+FY23
+FY24
+OLD CFT
+OLD CFT LOE
+OLD Notes
+RN
+
+Data Source: Key 4 BOS and Root
+BOS	
+ROOT	
+MDEP	
+APE	
+APE Nomen	
+APPN	
+CMD	
+Sum of FY20	
+Sum of FY21	
+Sum of FY22	
+Sum of FY23	
+Sum of FY24	
+Sum of FY20-24
+
+Data Source: Values of Key 4 BOS and Root
+Sum of FY20	
+Sum of FY21	
+Sum of FY22	
+Sum of FY23	
+Sum of FY24	
+Sum of FY20-24
+
+Data Source: BOS & Root
+BOS
+ROOT
+Sum of FY20
+Sum of FY21
+Sum of FY22
+Sum of FY23
+Sum of FY24
+Sum of FY20-24
+
+Data Source: Portfolio
+Sum of FY20
+Sum of FY21
+Sum of FY22
+Sum of FY23
+Sum of FY24
+Sum of FY20-24
+
+Data Source: APPN & BA
+APPN
+BA
+BA Desc
+FY2020
+Sum of FY21
+Sum of FY22
+Sum of FY23
+Sum of FY24
+Sum of FY20-24
+
+Data Source: CFT
+Sum of FY20
+Sum of FY21
+Sum of FY22
+Sum of FY23
+Sum of FY24
+Sum of FY20-24
+
+Data Source: OSDPE SSN
+APPN
+OSDPE
+OSDPE Desc
+CMD
+Sum of FY15
+Sum of FY16
+Sum of FY17
+Sum of FY18
+Sum of FY19
+Sum of FY20
+Sum of FY21
+Sum of FY22
+Sum of FY23
+Sum of FY24
+
+Data Source: Proc Execution
+Key2
+APPN
+Roll SSN
+Roll SSN Desc
+CMD
+FY15
+FY16
+FY17
+FY18
+FY19
+FY20
+FY21
+FY22
+FY23
+FY24
+FY18 Allocated
+FY18 Obligated 180704
+Obligation rate
+
+

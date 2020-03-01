@@ -1,0 +1,580 @@
+
+/*Footer */
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* The bottom margin is the negative value of the footer's height */
+  margin: 0 auto -30px;
+  overflow: visible !important;
+}
+.footer, .push {
+  /* .push must be the same height as .footer */
+  height: 50px;
+  /* Multicolumn Layout With Sticky Footer */
+  clear: both;
+}
+.footer {
+   background: gold;
+   color: #fff;
+   line-height: 30px;
+   text-align: center;
+}
+body #s4-workspace {
+  margin-bottom: -30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body, .ms-core-defaultFont, #pageStatusBar, .ms-status-msg, .js-callout-body
+{
+font-family:"Trade Gothic LT Std", Arial;
+}
+.ms-backgroundImage{
+	
+	background: url("/sites/ecm/SiteAssets/ECM/title.png");
+	background-size: 400px;
+	background-repeat:repeat-x;
+
+	
+}
+ms-core-listMenu-verticalBox
+{
+display:none;
+}
+#container{
+	
+	min-height:100%;
+	position:relative;
+}
+body
+{
+	color: #000000;
+	padding-bottom:60px; /*height of footer*/
+}
+.maintable
+{
+max-width:1250px;
+margin-left:auto;
+margin-right:auto;
+}
+
+/*suite links*/
+#suiteBarLeft
+{
+	background-color: transparent;
+}
+.ms-core-brandingText
+{
+display:none;
+}
+.ms-core-brandingText, .ms-core-suiteLink-a,
+.ms-core-brandingText:visited, .ms-core-suiteLink-a:visited  
+{
+    color: #000000;
+   
+}
+.ms-siteicon-img
+{
+max-height:69px;
+max-width:217px;
+}
+.ms-welcome-root > a.ms-core-menu-root
+{
+	color: #000000;
+}
+
+/*share, follow*/
+.ms-promotedActionButton-text
+{
+	color: #000000;
+}
+
+/*ribbon*/
+.ms-cui-tt-s.ms-browseTab > .ms-cui-tt-a > .ms-cui-tt-span,
+.ms-cui-tt-a > .ms-cui-tt-span
+{
+	color:#000000 !important;
+}
+
+/*page title*/
+.ms-core-pageTitle
+{
+	color:#08262c;
+	display:none;
+}
+
+/*search box*/
+.ms-helperText, input.ms-helperText
+{
+	color: #5d7e95;
+}
+
+/*top nav*/
+.ms-core-navigation .menu-item-text, 
+.ms-core-navigation .ms-navedit-editLinksText > span .ms-metadata
+{
+	color: #5d7e95;
+}
+.ms-core-navigation .menu-item-text:hover, /*hover*/
+.ms-core-navigation .ms-navedit-editLinksText > span .ms-metadata:hover
+{
+	color: #08262c;
+}
+.ms-core-navigation a.static.selected .menu-item-text, /*selected*/
+.ms-core-navigation .dynamic .menu-item-text /*popup*/
+{
+	color: #08262c;
+}
+
+/*left nav*/
+.ms-core-sideNavBox-removeLeftMargin .menu-item-text, 
+.ms-core-sideNavBox-removeLeftMargin .ms-navedit-editLinksText > span .ms-metadata
+{
+	color: #08262c;
+}
+.ms-core-sideNavBox-removeLeftMargin .menu-item-text:hover,
+.ms-core-sideNavBox-removeLeftMargin .ms-navedit-editLinksText > span .ms-metadata:hover
+{
+	color: #5d7e95;
+}
+.ms-core-sideNavBox-removeLeftMargin .static.selected .menu-item-text
+{
+	color: #5d7e95;
+}
+
+.ms-core-sideNavBox-removeLeftMargin li.static a:hover
+{
+	background-color:transparent;
+	background-image:none;
+}
+.ms-core-sideNavBox-removeLeftMargin .ms-splinkbutton-text
+{
+	color: #000000;
+}
+
+/*body*/
+.ms-rtestate-field h2, .ms-rteElement-H2
+{
+	color:#5d7e95;
+}
+a, a:visited,
+.ms-vb a, .ms-vb a:hover, .ms-vb a:visited,
+.ms-vb2 a, .ms-vb2 a:hover, .ms-vb2 a:visited,
+.ms-vb-user a, .ms-vb-user a:hover, .ms-vb-user a:visited
+{
+	color:#08262c;
+}
+
+/*list*/
+.ms-heroCommandLink, .ms-heroCommandLink:visited
+{
+	color:#5d7e95;
+}
+.ms-pivotControl-surfacedOpt-selected, 
+.ms-pivotControl-surfacedOpt:hover,
+.ms-pivotControl-overflowDot:hover{
+	color: #5d7e95;
+}
+.ms-InlineSearch-SearchBox-EmptyUnfocused.ms-InlineSearch-SearchBox-EmptyUnfocused ,
+.ms-InlineSearch-SearchBox-EmptyFocused,
+.ms-vh a, .ms-vh2 a,
+.ms-vb a.ms-listlink, .ms-vb2 a.ms-listlink,
+.ms-vb, .ms-vb2,
+.ms-subtleLink:link
+{
+	color:#000000;
+}
+.ms-list-emptyText-compact
+{
+	color: #000000;
+}
+
+/*web part*/
+.ms-webpart-titleText.ms-webpart-titleText,
+.ms-webpart-titleText > a,
+.ms-webpart-titleText > a:hover,
+.ms-webpart-titleText > a:visited
+{
+	color: #000000;
+}
+
+/*page layouts*/
+.ms-rtestate-field h1,
+.ms-rtestate-field h2,
+.ms-rtestate-field h3,
+.ms-rtestate-field h4
+{
+	color: #5d7e95;
+}
+.article-content
+{
+	color: #000000;
+}
+.article-header, .date-line, .by-line
+{
+	color: #5d7e95;
+}
+
+/*settings*/
+.ms-calloutLink, .ms-calloutLink:hover, .ms-toolbar,
+.ms-vl-apptitle, a.ms-vl-apptitle:visited,
+.ms-core-listMenu-item, .ms-linksection-title,
+.ms-dlg-heading, h2.ms-dlg-heading,
+.js-callout-body, .js-callout-contents
+{
+	color:#000000;
+}
+.ms-descriptiontext, .ms-vl-appstatus,
+.ms-accentText, .ms-accentText:visited
+{
+	color:#5d7e95;
+}
+.ms-sectionheader a, .ms-sectionheader a:hover, .ms-sectionheader a:visited{
+	color: #08262c;
+}
+button, input[type=button], input[type=reset], input[type=submit]
+{
+	color: #08262c;
+} 
+input.ms-button-emphasize, button.ms-button-emphasize
+{
+	color: #5d7e95;
+}
+.ms-storefront-appiconspan /*apps color*/
+{
+	background-color: #5d7e95;
+}
+
+/*wiki*/
+.welcome-content
+{
+	color: #5d7e95;
+}
+.ms-comm-ratingSeparator, .ms-comm-ratingCountContainer /*star ratings*/
+{
+	border-color: #000000;
+	color: #000000;
+}
+
+
+/*generic*/
+.link-item, .link-item a, .link-item a:link, .link-item a:hover, .link-item a:visited
+{
+	color: #08262c;
+}
+.description
+{
+	color: #000000;
+}
+.ms-navedit-editLinksText
+{
+	display:none;
+}
+.ms-navedit-editLinksText:hover > span > .ms-metadata, .ms-core-listMenuEdit:hover > tr > .ms-navedit-linkCell > .ms-core-listMenu-item
+{
+	display:none;
+}
+.ms-core-listMenu-horizontalBox .ms-core-listMenu-selected:link, .ms-core-listMenu-horizontalBox .ms-core-listMenu-selected:visited, .ms-core-listMenu-horizontalBox .ms-core-listMenu-selected, .ms-tv-selected:link
+{
+	display:none;
+}
+/*footer*/
+/*#footer
+{
+ background: url("/sites/ecm/Style Library/footer.txt");	
+ position:fixed;
+ vertical-align:bottom;
+ height:60px;
+ bottom:0;
+ width:100%;
+ color:#C9C2bb;
+ opacity: 1.0;
+
+}*/
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* The bottom margin is the negative value of the footer's height */
+  margin: 0 auto -75px;
+  overflow: visible !important;
+}
+  margin: 0 auto -70px;
+  overflow: visible !important;
+}
+.footer, .push {
+  /* .push must be the same height as .footer */
+  height: 75px;
+  /* Multicolumn Layout With Sticky Footer */
+  clear: both;
+  color: #08262c;
+}
+.transparentfooter {
+  background:#C9C2bb;
+  background:rgba(200,200,200,0.7);
+  /*opacity: .6;
+  filter: alpha(opacity=100);   /*line-height: 50px;*/
+  
+ 
+}
+.footer a{
+	color:#Ab1e2c;
+}
+.footer a:hover img{
+	
+	opacity: .8;
+    filter: alpha(opacity=80);
+}
+.footer a:hover{
+font-weight:bolder;
+text-decoration:none;
+}
+
+body #s4-workspace {
+  margin-bottom: -75px;
+}
+#s4-titlerow{
+max-width:1250px;
+margin-left:auto;
+margin-right:auto;
+vertical-align:middle;
+}
+
+#s4-bodyContainer
+{
+	padding-bottom:75px;
+}
+/*breadcrumb*/
+
+ms-breadcrumb li,ul {
+
+
+ display: inline;  margin-left:-2.5em   
+
+
+}
+
+ms-breadcrumb > li:first-child  > span:first-child{
+
+
+ display:none
+
+
+}
+/*home page tiles*/
+.info{
+	
+}
+.infoone
+{
+border-radius: 0px 0px 15px 15px;
+background:#ab1e2c;
+background:rgba(172,31,45,0.5);
+vertical-align:top;
+width:25%;
+height:130px;
+
+}
+.infotwo
+{
+border-radius: 0px 0px 15px 15px;
+background:#002d72;
+background:rgba(0,45,144,0.5);
+vertical-align:top;
+width:25%;
+height:130px;
+
+}
+.infothree
+{
+border-radius: 0px 0px 15px 15px;
+background:#88364d;
+background:rgba(137,55,78,0.5);
+vertical-align:top;
+width:25%;
+height:130px;
+
+
+}
+
+.infofour
+{
+border-radius: 0px 0px 15px 15px;
+background:#5d7e95;
+background:rgba(93,126,149,0.5);
+vertical-align:top;
+width:25%;
+height:130px;
+
+}
+
+.info a{
+	color:#08262c;
+	font-size:15px;
+	padding-left:10px;
+	
+*/
+
+}
+.info a:hover{
+font-weight:bold;
+text-decoration:none;
+
+}
+.headertile tbody td
+{
+	color:#000000;
+	font-style: 14px;
+	width: 25%; 
+	height: 25px
+}
+#aboutheader {
+    border-radius: 15px 15px 0px 0px;
+    background: #ab1e2c;
+    background-image:url('../SiteAssets/ECM/about1.png');
+    background-repeat:no-repeat;
+    background-position: left center;
+    padding: 10px; 
+    width: 500px;
+    height: 18px; 
+}
+#resheader {
+    border-radius: 15px 15px 0px 0px;
+    background: #002d72;
+    background-image:url('../SiteAssets/ECM/resources1.png');
+    background-repeat:no-repeat;
+    background-position: left center;
+	padding: 10px; 
+    width: 500px;
+    height: 18px; 
+}
+#myheader {
+    border-radius: 15px 15px 0px 0px;
+    background: #88364d;
+    background-image:url('../SiteAssets/ECM/mydayzim.png');
+    background-repeat:no-repeat;
+    background-position: left center;
+    padding: 10px; 
+    width: 500px;
+    height: 18px; 
+}
+
+
+#toolheader {
+    border-radius: 15px 15px 0px 0px;
+    background: #5d7e95;
+    background-image:url('../SiteAssets/ECM/tool.png');
+    background-repeat:no-repeat;
+    background-position: left center;
+    padding: 0px; 
+    width: 500px;
+    height: 18px; 
+}
+
+
+
+/*Home Page Top Slider*/
+.cbs-Slideshow, .cbs-largePictureContainer, .cbs-largePictureImageContainer
+{
+	
+	width:100%;
+}
+.cbs-largePictureDataContainer
+{
+	
+	width:100%;
+	padding:0px 10px 10px 10px;
+}
+.cbs-largePictureImg
+{
+	width:100%;
+	max-width:100%;
+}
+.cbs-largePictureDataOverlay
+{
+	width:525px;
+	height:70px;
+	opacity:0.4;
+}
+.cbs-largePictureDataContainer, a.cbs-largePictureLine1Link, h2.cbs-largePictureLine1, .cbs-Slideshow h2
+{
+	color:#ffffff;
+}
+/*Home page Circle styles*/
+.circles > tbody > tr > th, .ms-rteTable-default > tbody > tr.ms-rteTableFooterRow-default, .ms-rteTable-0 > tbody > tr > th, .ms-rteTable-0 > tbody > tr.ms-rteTableFooterRow-0, .ms-rteTable-1 > tbody > tr > th, .ms-rteTable-1 > tbody > tr.ms-rteTableFooterRow-1, .ms-rteTable-2 > tbody > tr > th, .ms-rteTable-2 > tbody > tr.ms-rteTableFooterRow-2, .ms-rteTable-3 > tbody > tr > th, .ms-rteTable-3 > tbody > tr.ms-rteTableFooterRow-3, .ms-rteTable-4 > tbody > tr > th, .ms-rteTable-4 > tbody > tr.ms-rteTableFooterRow-4, .ms-rteTable-5 > tbody > tr > th, .ms-rteTable-5 > tbody > tr.ms-rteTableFooterRow-5, .ms-rteTable-6 > tbody > tr > th, .ms-rteTable-6 > tbody > tr.ms-rteTableFooterRow-6, .ms-rteTable-7 > tbody > tr > th, .ms-rteTable-7 > tbody > tr.ms-rteTableFooterRow-7, .ms-rteTable-8 > tbody > tr > th, .ms-rteTable-8 > tbody > tr.ms-rteTableFooterRow-8, .ms-rteTable-9 > tbody > tr > th, .ms-rteTable-9 > tbody > tr.ms-rteTableFooterRow-9, .ms-rteTable-10 > tbody > tr > th, .ms-rteTable-10 > tbody > tr.ms-rteTableFooterRow-10{
+color:#08262c;
+Text-align:left;
+font-weight:normal;
+}
+.circles  a:hover img{
+	
+	opacity: .8;
+    filter: alpha(opacity=80);}
+#contentRow{
+	padding-top:0px;
+	
+}
+    
+.ms-displayInline
+{
+	text-align:left;
+}
+.ms-peopleux-detailuserline
+{
+	white-space:normal;
+	overflow:visible;
+	text-overflow:clip;
+	word-wrap:break-word;
+
+}
+.ms-rteFontSize-3
+{
+	font-size:14pt;
+}
+
+/*modifications to move news up*/
+#s4-titlerow{
+	
+	padding-top:5px;
+	padding-bottom:0px;
+	height:55px;
+}
+.ms-webpartzone-cell
+{
+	margin: auto auto auto;
+}
+.ms-rteTable-default > tbody > tr > td, .ms-rteTable-default > tbody > tr > th, .ms-rteTable-0 > tbody > tr > td, .ms-rteTable-0 > tbody > tr > th, .ms-rteTable-1 > tbody > tr > td, .ms-rteTable-1 > tbody > tr > th, .ms-rteTable-2 > tbody > tr > td, .ms-rteTable-2 > tbody > tr > th, .ms-rteTable-3 > tbody > tr > td, .ms-rteTable-3 > tbody > tr > th, .ms-rteTable-4 > tbody > tr > td, .ms-rteTable-4 > tbody > tr > th, .ms-rteTable-5 > tbody > tr > td, .ms-rteTable-5 > tbody > tr > th, .ms-rteTable-6 > tbody > tr > td, .ms-rteTable-6 > tbody > tr > th, .ms-rteTable-7 > tbody > tr > td, .ms-rteTable-7 > tbody > tr > th, .ms-rteTable-8 > tbody > tr > td, .ms-rteTable-8 > tbody > tr > th, .ms-rteTable-9 > tbody > tr > td, .ms-rteTable-9 > tbody > tr > th, .ms-rteTable-10 > tbody > tr > td, .ms-rteTable-10 > tbody > tr > th
+{
+	padding: 1px 2px 1px;
+}
+h2, h3, .ms-h2, .ms-h3, .ms-headerFont
+{
+	font-weight:bold;
+}
+.ms-rteThemeForeColor-3-4 
+{
+background-image:url('../SiteAssets/ECM/calnews.png');
+background-repeat:no-repeat;
+padding-left:16px;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> FUNDING ENTITIES </title>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.14/lodash.core.js"></script>
+
+		<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+        <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
+        <script src="https://unpkg.com/redux-thunk@2.2.0/dist/redux-thunk.min.js"></script>
+        <script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.min.js"></script>
+		-->
+    </head>
+
+    <body>
+
+        <div id="app"></div>
+		
+		<h1> FUNDING ENTITIES CONSOLE APP</h1>
+
+        <!-- State Management -->
+        <script type='text/javascript'>
+
+				//"use strict";
+
+				//Library Code
+				function createStore(reducer) {
+				// The Store
+				// The store should have four parts
+				// 1. The state
+				// 2. Get the state.
+				// 3. Listen to changes on the state
+				// 4. Update the state
+				var state; //hold state of entire application
+
+				var listeners = [];
+
+				var getState = function getState() {
+					return state;
+				}; //provide way to get access to state
+
+
+				var subscribe = function subscribe(listener) {
+					//push function being passed to subscibe when invoked
+					listeners.push(listener);
+					return function () {
+					listeners = listeners.filter(function (l) {
+						return l !== listener;
+					}); //filter out original listener function once subscribed is invoked
+					};
+				};
+
+				var dispatch = function dispatch(action) {
+					//receive action to tell dispatch the specific event that occurs inside application
+					state = reducer(state, action); //call app function
+
+					listeners.forEach(function (listener) {
+					return listener();
+					});
+				};
+
+				return {
+					//return state when createStore is invoked
+					getState: getState,
+					subscribe: subscribe,
+					dispatch: dispatch
+				};
+				}
+				/*
+					Reduce function todos() inputs are state and action.
+					Output is new state.
+				*/
+				// App Code
+				//define action names
+
+
+				var ADD_TODO = 'ADD_TODO';
+				var REMOVE_TODO = 'REMOVE_TODO';
+				var TOGGLE_TODO = 'TOGGLE_TODO';
+				var ADD_GOAL = 'ADD_GOAL';
+				var REMOVE_GOAL = 'REMOVE_GOAL'; //action creators return actions if we want to get an action or dispatch an action
+
+				function addToDoAction(todo) {
+				return {
+					type: ADD_TODO,
+					todo: todo
+				};
+				}
+
+				function removeToDoAction(id) {
+				return {
+					type: REMOVE_TODO,
+					id: id
+				};
+				}
+
+				function toggleToDoAction(id) {
+				return {
+					type: TOGGLE_TODO,
+					id: id
+				};
+				}
+
+				function addGoalAction(goal) {
+				return {
+					type: ADD_GOAL,
+					goal: goal
+				};
+				}
+
+				function removeGoalAction(id) {
+				return {
+					type: REMOVE_GOAL,
+					id: id
+				};
+				}
+
+				function todos() {
+				var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+				var action = arguments.length > 1 ? arguments[1] : undefined;
+
+				//Pure Function
+				switch (action.type) {
+					case ADD_TODO:
+					return state.concat([action.todo]);
+					//new state will create, mutation will not occure because concat will return new array to avoid modifying state
+
+					case REMOVE_TODO:
+					return state.filter(function (todo) {
+						return todo.id !== action.id;
+					});
+
+					case TOGGLE_TODO:
+					/*return state.map(function (todo) {
+						return todo.id !== action.id ? todo : // if todo.id === action.id, return todo without modification
+						_.assign(
+							{}, todo, { complete: !todo.complete}
+						);
+					});*/
+					// if todo,id !== action.id, create a new object from todo      
+
+					default:
+					return state;
+				}
+				}
+
+				function goals() {
+				var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+				var action = arguments.length > 1 ? arguments[1] : undefined;
+
+				switch (action.type) {
+					case ADD_GOAL:
+					return state.concat([action.goal]);
+					//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+
+					case REMOVE_GOAL:
+					return state.filter(function (goal) {
+						return goal.id !== action.id;
+					});
+
+					default:
+					return state;
+				}
+				}
+
+				function app() {
+				var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+				var action = arguments.length > 1 ? arguments[1] : undefined;
+				//app invokes both todos and goals reducers
+				return {
+					todos: todos(state.todos, action),
+					goals: goals(state.goals, action)
+				};
+				}
+
+				var store = createStore(app); //user invokes to return store
+
+				store.subscribe(function () {
+				//detects state changes in store
+				console.log('The new state is: ', store.getState());
+				}); //dispatch action
+
+				store.dispatch(addToDoAction({
+				id: 0,
+				name: 'Walk the dog',
+				complete: false
+				}));
+				store.dispatch(addToDoAction({
+				id: 1,
+				name: 'Wash the car',
+				complete: false
+				}));
+				store.dispatch(addToDoAction({
+				id: 2,
+				name: 'Go to the gym',
+				complete: true
+				}));
+				store.dispatch(removeToDoAction(1));
+				store.dispatch(toggleToDoAction(0));
+				store.dispatch(addGoalAction({
+				id: 0,
+				name: 'Learn Redux'
+				}));
+				store.dispatch(addGoalAction({
+				id: 1,
+				name: 'Lose 20 pounds'
+				}));
+				store.dispatch(removeGoalAction(0));		
+
+
+
+               
+
+        </script>
+
+        <!-- React App -->
+        <script type="text/babel">
+
+
+        </script>
+    </body>
+</html>

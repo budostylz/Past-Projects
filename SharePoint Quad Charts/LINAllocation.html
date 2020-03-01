@@ -1,0 +1,31 @@
+<h3>LIN Allocation</h3>
+
+<fieldset style="height:300px;overflow:auto">
+    <div id="LINAllo">
+            <table id= "LINTable" style="width:100%">
+                <tr>
+                    <th style='text-align:left'>Root</th>
+                    <th style='text-align:left'>LIN</th>
+                    <th style='text-align:left'>Amount Available</th>
+                    <th style='text-align:left'>Allocate Some</th>
+                    <th style='text-align:left'>Allocate All</th>
+                </tr>
+            </table>
+        
+
+    </div>
+</fieldset>
+
+
+jQuery("#LINAllo").append('<table id= "'+LIN+'LINAllo" style="width:100%">');
+
+        jQuery("#"+LIN+"LINAllo").append('<tr id="'+LIN+'rowDisp">')
+        jQuery("#"+LIN+"rowDisp").append('<td><span>'+LIN+' $'+pom+'</span></td>');
+        jQuery("#"+LIN+"rowDisp").append('<td><span><input type="text" id="'+LIN+'allo"></span></td>');
+        jQuery("#"+LIN+"rowDisp").append('<td><span><input type="checkbox" id="'+LIN+'all">Allocate ALL</span></td>');
+
+
+        jQuery("#"+LIN+"LINAllo").append('</tr>');
+
+
+        jQuery("#LINAllo").append('</table>');

@@ -1,0 +1,5 @@
+Key 4 Concatenation
+	1. MDEP
+	2. APE
+	3. APPN
+	CMD(also called ROC)

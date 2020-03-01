@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> LIN ENTITIES </title>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.14/lodash.core.js"></script>
+
+		<!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+        <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
+        <script src="https://unpkg.com/redux-thunk@2.2.0/dist/redux-thunk.min.js"></script>
+        <script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.min.js"></script>
+		-->
+    </head>
+
+    <body>
+
+        <div id="app"></div>
+		
+		<h1> LIN ENTITIES CONSOLE APP</h1>
+
+        <!-- State Management -->
+        <script type='text/javascript'>
+
+		//Library Code
+		function createStore(reducer){ // The Store
+			// The store should have four parts
+			// 1. The state
+			// 2. Get the state.
+			// 3. Listen to changes on the state
+			// 4. Update the state
+
+			let state //hold state of entire application
+			let listeners = []
+
+			const getState = () => state //provide way to get access to state
+
+			const subscribe = (listener) => {//push function being passed to subscibe when invoked
+				listeners.push(listener)
+				return () => {
+					listeners = listeners.filter((l) => l !== listener)//filter out original listener function once subscribed is invoked
+				}
+			}
+
+			const dispatch = (action) =>{//receive action to tell dispatch the specific event that occurs inside application
+				state = reducer(state, action);//call app function
+				listeners.forEach((listener) => listener())
+			}
+
+
+
+			return { //return state when createStore is invoked
+				getState,
+				subscribe,
+				dispatch
+			}
+
+
+		}
+
+
+
+
+		
+		
+		/*AUTHORITATIVE DATA ACTIONS*/
+		
+		//Root 
+		const GET_ROOT = 'GET_ROOT';
+		
+		//LIN
+		const GET_LIN = 'GET_LIN';
+
+		
+		
+		/* PROGRAM DATA ACTIONS*/
+		
+		//PROGRAM
+		const GET_PROGRAM_PROPERTIES = 'GET_PROGRAM_PROPERTIES';
+		const GET_PROGRAM_ROOTS = 'GET_PROGRAM_ROOTS';
+		const GET_PROGRAM_LIN = 'GET_PROGRAM_LIN';
+
+		
+		/*AUTHORITATIVE DATA ACTION CREATORS*/
+
+		
+		//ROOT
+		function getRootAction(root){//ROOT Actions
+
+			return{
+				type: GET_ROOT,
+				root
+			}
+		}
+
+		
+		//LIN
+		function getLINAction(LIN){//LIN Actions
+
+			return{
+				type: GET_LIN,
+				LIN
+			}
+		}
+		
+
+		
+		/* PROGRAM DATA ACTION CREATORS */
+		
+		//PROGRAM PROPERTIES
+		function getProgramPropertiesAction(program){//PROGRAM PROPERTIES
+
+			return{
+				type: GET_PROGRAM_PROPERTIES,
+				program
+			}
+		}
+		
+		function getProgramRootsAction(program){//PROGRAM ROOTS
+
+			return{
+				type: GET_PROGRAM_ROOTS,
+				program
+			}
+		}
+		
+		function getProgramLINAction(program){//PROGRAM LIN
+
+			return{
+				type: GET_PROGRAM_LIN,
+				program
+			}
+		}
+		
+
+		
+		/* AUTHORITATIVE DATA REDUCERS*/	
+		function rootActions (state = [], action){ //ROOT 
+
+			switch(action.type){
+				case GET_ROOT :
+						return state.concat([action.root])
+				default : 
+					return state
+
+
+			}
+		}
+
+		
+		function LINActions (state = [], action){ //LIN 
+
+			switch(action.type){
+				case GET_LIN :
+						return state.concat([action.LIN])
+				default : 
+					return state
+
+
+			}
+		}
+
+
+
+		
+		
+		/* PROGRAM DATA REDUCERS */
+		function programPropertiesActions (state = [], action){//PROGRAM PROPERTIES
+
+			switch(action.type){
+				case GET_PROGRAM_PROPERTIES :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programRootActions (state = [], action){//PROGRAM ROOTS
+
+			switch(action.type){
+				case GET_PROGRAM_ROOTS :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+		function programLINActions (state = [], action){//PROGRAM LIN
+
+			switch(action.type){
+				case GET_PROGRAM_LIN :
+						return state.concat([action.program])
+				default : 
+					return state
+			}
+			
+		}
+		
+
+
+
+		function app (state = {}, action){
+			return {
+				
+				/* AUTHORITATIVE DATA ENTITIES */	
+				ROOT: rootActions(state.ROOT, action),//ROOT (DYNAMIC ENTITY)
+				LIN: LINActions(state.LIN, action), //LIN (DYNAMIC ENTITY)
+								
+				
+				/* PROGRAM DATA ENTITIES */
+				PROGRAM_PROPERTIES: programPropertiesActions(state.PROGRAM_PROPERTIES, action),//PROGRAM PROPERTIES
+				PROGRAM_ROOTS:      programRootActions(state.PROGRAM_ROOTS, action),//PROGRAM ROOTS
+				PROGRAM_LIN:       programLINActions(state.PROGRAM_KEY4, action),//PROGRAM LIN
+
+			}
+		}
+
+
+
+		const store = createStore(app) //user invokes to return store
+
+		store.subscribe(() => {//detects state changes in store
+			console.log('The new state is: ', store.getState())
+		})
+
+		//dispatch actions
+		
+		
+		/* AUTHORITATIVE DATA DISPATCHES */
+		
+		//Get Root
+		store.dispatch(getRootAction({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))		
+		store.dispatch(getRootAction({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))
+
+
+		
+		
+		
+		//Get LIN
+		store.dispatch(getLINAction({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			LIN: "LIN1",
+			PQTYFY19: [100, 200, 300, 400],
+			PQTYFY20: [100, 200, 300, 400],
+			PQTYFY21: [100, 200, 300, 400],
+			PQTYFY22: [100, 200, 300, 400],
+			PQTYFY23: [100, 200, 300, 400],
+			PQTYFY24: [100, 200, 300, 400],
+			PQTYFY25: [100, 200, 300, 400],
+			POM: 2800
+
+
+		}))	
+		store.dispatch(getLINAction({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			LIN: "LIN2",
+			PQTYFY19: [100, 200, 300, 400],
+			PQTYFY20: [100, 200, 300, 400],
+			PQTYFY21: [100, 200, 300, 400],
+			PQTYFY22: [100, 200, 300, 400],
+			PQTYFY23: [100, 200, 300, 400],
+			PQTYFY24: [100, 200, 300, 400],
+			PQTYFY25: [100, 200, 300, 400],
+			POM: 2800
+
+
+		}))
+
+
+
+		
+
+
+		
+		
+		
+		//store.dispatch(removeRDTEAPPNAction(1))
+		
+		
+		
+
+		
+		/* PROGRAM DATA DISPATCHES */
+		
+		//GET Program Properties
+		store.dispatch(getProgramPropertiesAction({
+			id:1,
+			Program : "Program Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			Root: ["root 1", "root 2"],
+			LIN: ["LIN 1", "LIN 2"]	
+		}))
+		
+		//GET PROGRAM ROOTS		
+		store.dispatch(getProgramRootsAction({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))		
+		store.dispatch(getProgramRootsAction({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD"
+		}))
+		
+		//GET PROGRAM LIN
+		store.dispatch(getProgramLINAction({
+		
+			id: 1,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			LIN: "LIN1",
+			PQTYFY19: [100],
+			PQTYFY20: [100],
+			PQTYFY21: [100],
+			PQTYFY22: [100],
+			PQTYFY23: [100],
+			PQTYFY24: [100],
+			PQTYFY25: [100],
+			POM: 500
+
+
+		}))	
+		store.dispatch(getProgramLINAction({
+		
+			id: 2,
+			Root : "Root Name",
+			Portfolio: "Air Defense",
+			BOS: "AD",
+			LIN: "LIN2",
+			PQTYFY19: [100],
+			PQTYFY20: [100],
+			PQTYFY21: [100],
+			PQTYFY22: [100],
+			PQTYFY23: [100],
+			PQTYFY24: [100],
+			PQTYFY25: [100],
+			POM: 500
+
+
+		}))
+		
+	
+
+        </script>
+
+        <!-- React App -->
+        <script type="text/babel">
+
+
+        </script>
+    </body>
+</html>

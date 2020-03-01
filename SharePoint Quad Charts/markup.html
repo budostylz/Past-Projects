@@ -1,0 +1,363 @@
+<link rel="stylesheet" href="/quad/code/css/styles.css">
+<script type="text/javascript" src="/quad/code/libs/angular.min_v1.7.2.js"></script> 
+<script type="text/javascript" src="/quad/code/libs/taffydb.js"></script>
+<link rel="stylesheet" type="text/css" href="/quad/code/css/datatables.min.css"/>
+<link rel="stylesheet" type="text/css" href="/quad/code/css/buttons.dataTables.min.css"/>
+<script type="text/javascript"  src="/quad/code/libs/jQueryv1.12.4.js"></script>
+<script type="text/javascript" src="/quad/code/libs/datatables.min.js"></script>
+<script type="text/javascript" src="/quad/code/libs/mathJS-5.2.0.js"></script>
+<script type="text/javascript" src="/quad/code/libs/moment.js"></script>
+<script type="text/javascript" src="/quad/code/js/grid.js"></script>
+<script type="text/javascript" src="/quad/code/js/QuadModule.js"></script>
+<script type="text/javascript" src="/quad/code/js/AllQuadServices.js"></script>
+<script type="text/javascript" src="/quad/code/js/Program/APPN-Key4-LIN-Allo-Controllers.js"></script>
+
+
+<div ng-app="app">
+	<div ng-controller="PageLoadCtrl as pageload"></div>
+	<div ng-controller="UserSelectCtrl as userSelect"></div>
+</div>
+
+
+
+<fieldset width="100px">
+    <table>
+        <tr><td style="font-weight:bold">Quad:</td><td id="currentQuadName"></td></tr>
+        <tr><td style="font-weight:bold">Program:</td><td id="currentProgramName"></td></tr>
+        <tr><td style="font-weight:bold">BOS:</td><td id="currentProgramBOS"></td></tr>
+        <tr><td style="font-weight:bold">Root:</td><td id="currentProgramRoot"></td></tr>
+        <tr><td style="font-weight:bold">Key4:</td><td id="currentProgramKey4"></td></tr>
+        <tr><td style="font-weight:bold">LIN:</td><td id="currentProgramLIN"></td></tr>
+    </table>
+</fieldset>
+
+<h3>Root</h3>
+<fieldset id="roots" style="height:100px;width:500px;overflow:auto">
+</fieldset>
+
+<h3>Key 4</h3>
+<fieldset id="key4" style="height:100px;width:500px;overflow:auto">
+        <label id= "Key4Label">Select Root to Display it's Key 4</label>
+</fieldset>
+
+<h3>LIN</h3>
+<fieldset id="LIN" style="height:100px;width:500px;overflow:auto">
+        <label id= "LINLabel">Select Root to Display it's LIN</label>
+</fieldset>
+
+
+<h1>Key 4 Allocation</h1>
+<fieldset >
+    <div id="key4Allo" style="overflow:auto;height:300px">
+            <table id= "key4Table" style="width:100%">
+                <tr>
+                    <th style='text-align:left'>Root</th>
+                    <th style='text-align:left'>Key 4</th>
+                    <th style='text-align:left'>FY19-FY25(millions)</th>    
+                    <th style='text-align:center'>FY19</th>   
+                    <th style='text-align:center'>FY20</th>    
+                    <th style='text-align:center'>FY21</th>    
+                    <th style='text-align:center'>FY22</th>    
+                    <th style='text-align:center'>FY23</th>  
+                    <th style='text-align:center'>FY24</th> 
+                    <th style='text-align:center'>FY25</th>    
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+                    
+
+                </tr>
+            </table>
+        
+
+    </div>
+</fieldset>
+
+
+<h1>LIN Allocation</h1>
+<a href="#"><div id="distModal" class="blackbutton">AAO-APO-RO Distribution</div></a>
+
+<fieldset style="height:300px;overflow:auto">
+    <div id="LINAllo">
+            <table id= "LINTable" style="width:100%">
+                <tr>
+                    <th style='text-align:left'>Root</th>
+                    <th style='text-align:left'>LIN</th>
+                    <th style='text-align:left'>FY19-FY25 QUANTITY</th>
+                    <th style='text-align:left'>LIN NOMEN</th>
+                    <th style='text-align:left'>AAO</th>
+                    <th style='text-align:left'>APO</th>
+                    <th style='text-align:left'>RO</th>
+                    <th style='text-align:left'>SACS TOTAL</th>
+                </tr>
+            </table>
+        
+
+    </div>
+</fieldset>
+
+
+<h3>POM Allocation</h3>
+<strong>Actual amount funded</strong>
+<div id="lastModified-ReqCap"><span id="modifiedSpanPOMAllo"></span></div>
+<table id="grid1" class="display nowrap" style="width:100%">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>FY19</th>
+            <th>FY20</th>
+            <th>FY21</th>
+            <th>FY22</th>
+            <th>FY23</th>
+            <th>FY24</th>
+            <th>FY25</th>
+            <th>FY21 - 25</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr>
+            <td>1</td>
+            <td>RDTE</td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtefy19" type="text" width="20px" ></td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtefy20" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtefy21" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtefy22" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtefy23" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtefy24" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtefy25" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="rdtePOMPeriod" type="text" width="20px"></td>
+           
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>PROC</td>
+            <td><input class = "POMAllocTable APPNSec" id="procfy19" type="text" width="20px" ></td>
+            <td><input class = "POMAllocTable APPNSec" id="procfy20" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="procfy21" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="procfy22" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="procfy23" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="procfy24" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="procfy25" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="procPOMPeriod" type="text" width="20px"></td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Other</td>
+            <td><input class = "POMAllocTable APPNSec" id="otherfy19" type="text" width="20px" ></td>
+            <td><input class = "POMAllocTable APPNSec" id="otherfy20" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="otherfy21" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="otherfy22" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="otherfy23" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="otherfy24" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="otherfy25" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="otherPOMPeriod" type="text" width="20px"></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Total</td>
+            <td><input class = "POMAllocTable APPNSec" id="totalfy19" type="text" width="20px" ></td>
+            <td><input class = "POMAllocTable APPNSec" id="totalfy20" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="totalfy21" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="totalfy22" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="totalfy23" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="totalfy24" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="totalfy25" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable APPNSec" id="totalPOMPeriod" type="text" width="20px"></td>
+        </tr>
+         <tr>
+            <td>5</td>
+            <td>Quantity</td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityfy19" type="text" width="20px" ></td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityfy20" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityfy21" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityfy22" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityfy23" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityfy24" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityfy25" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable QuantitySec" id="quantityPOMPeriod" type="text" width="20px"></td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>MYC Floor</td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorfy19" type="text" width="20px" ></td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorfy20" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorfy21" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorfy22" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorfy23" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorfy24" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorfy25" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable MYCSec" id="mycfloorPOMPeriod" type="text" width="20px"></td>
+        </tr>
+
+        <tr>
+            <td>7</td>
+            <td>Deep Dive</td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy19" type="text" width="20px" ></td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy20" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy21" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy22" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy23" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy24" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy25" type="text" width="20px"></td>
+            <td><input class = "POMAllocTable DeepDiveSec" id="deepdivePOMPeriod" type="text" width="20px"></td>
+        </tr>
+        
+    </tbody>
+</table>
+<hr/>
+
+<a href="#"><div id="updateProgram" class="blackbutton">Submit</div></a>
+
+
+
+
+<head>
+
+    <link rel="shortcut icon" href="images/favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.cyan-light_blue.min.css">
+
+  </head>
+  
+  <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+          <h2 class="mdl-card__title-text">Root</h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                <ul style="list-style: none">
+                        <li><input type="checkbox" name="A2C2S" value="A2C2S"> A2C2S</li> 
+                        <li><input type="checkbox" name="ABRAMS RECAPITALIZATION" value="ABRAMS RECAPITALIZATION">ABRAMS RECAPITALIZATION</li>    
+                        <li><input type="checkbox" name="APACHE" value="APACHE"> APACHE</li>    
+                        <li><input type="checkbox" name="BCT AVIATION" value="BCT AVIATION">BCT AVIATION</li>    
+                        <li><input type="checkbox" name="BIOMETRICS" value="BIOMETRICS">BIOMETRICS</li>    
+   
+                </ul>
+              </div>
+      </div>
+      <hr></hr>
+      <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+            <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+              <h2 class="mdl-card__title-text">Key 4</h2>
+            </div>
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                <ul style="list-style: none">
+                  <li><input type="checkbox" name="FPFJ654818C3ARDTE5F0" value="FPFJ654818C3ARDTE5F0"> FPFJ654818C3ARDTE5F0</li>    
+                  <li><input type="checkbox" name="FPFJ654818C3ARDTE5F1" value="FPFJ654818C3ARDTE5F1"> FPFJ654818C3ARDTE5F1</li>    
+                  <li><input type="checkbox" name="FPFJ654818C3ARDTE5F2" value="FPFJ654818C3ARDTE5F2"> FPFJ654818C3ARDTE5F2</li>    
+                  <li><input type="checkbox" name="FPFJ654818C3ARDTE5F3" value="FPFJ654818C3ARDTE5F3"> FPFJ654818C3ARDTE5F3</li>    
+
+                </ul>
+            </div>
+          </div>
+    
+
+  </html>
+
+
+
+
+  <html>
+  <head>
+  </head>
+
+  <div class="container2">
+    <div class="wrap">   
+      <div class="select">
+					<select class="select-text" required>
+						<option value="" disabled selected></option>
+						<option value="1">Option 1</option>
+						<option value="2">Option 2</option>
+						<option value="3">Option 3</option>
+					</select>
+					<span class="select-highlight"></span>
+					<span class="select-bar"></span>
+					<label class="select-label">Select</label>
+		</div>      
+    </div>
+</div>
+
+</html>
+
+<div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+        <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+          <h2 class="mdl-card__title-text">KEY 4 SPLIT  </h2>
+        </div>
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                <ul style="list-style: none">
+                        <li></li> 
+   
+                </ul>
+              </div>
+      </div>
+
+
+      <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+            <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+              <h2 class="mdl-card__title-text">Root</h2>
+            </div>
+            <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    <ul style="list-style: none">
+                            <li><input type="checkbox" name="A2C2S" value="A2C2S"> A2C2S</li> 
+                            <li><input type="checkbox" name="ABRAMS RECAPITALIZATION" value="ABRAMS RECAPITALIZATION">ABRAMS RECAPITALIZATION</li>    
+                            <li><input type="checkbox" name="APACHE" value="APACHE"> APACHE</li>    
+                            <li><input type="checkbox" name="BCT AVIATION" value="BCT AVIATION">BCT AVIATION</li>    
+                            <li><input type="checkbox" name="BIOMETRICS" value="BIOMETRICS">BIOMETRICS</li>    
+       
+                    </ul>
+                  </div>
+          </div>
+          <hr></hr>
+          <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                  <h2 class="mdl-card__title-text">LIN</h2>
+                </div>
+                <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                    <ul style="list-style: none">
+                      <li><input type="checkbox" name="C18033" value="C18033"> C18033</li>    
+                      <li><input type="checkbox" name="C18034" value="C18034"> C18034</li>    
+                      <li><input type="checkbox" name="C18035" value="C18035"> C18035</li>    
+                      <li><input type="checkbox" name="C18036" value="C18036"> C18036</li>    
+    
+                    </ul>
+                </div>
+              </div>
+    
+              <div class="demo-updates mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--12-col-desktop">
+                    <div class="mdl-card__title mdl-card--expand mdl-color--teal-300">
+                      <h2 class="mdl-card__title-text">Funding Properties</h2>
+                    </div>
+                    <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+                        <ul style="list-style: none">
+                          <li><strong>Program:</strong> An Air Defense Program</li>
+                          <li><strong>Program ID:</strong> 1</li>
+                          <li><strong>Portfolio:</strong> Air Defense</li>
+                          <li><strong>LIN:</strong> C18033</li>
+                          <li>
+                              <strong>Program Navigation:</strong>
+                              <select class="select-text" required>
+                                      <option value="0" disabled selected>Select Location</option>
+                                      <option value="1">Air Defense Procurement Data</option>
+                                  </select>
+      
+                          </li>
+      
+      
+                        </ul>
+                    </div>
+                  </div>
+      
+
+
+
+
+
+
+
+
+

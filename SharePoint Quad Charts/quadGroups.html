@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="/sites/hqdag8_quad/code/css/buttonstyles.css">
+<script type="text/javascript" src="/sites/hqdag8_quad/code/libs/angular.min_v1.7.2.js"></script> 
+<script type="text/javascript" src="/sites/hqdag8_quad/code/libs/taffydb.js"></script>
+<link rel="stylesheet" type="text/css" href="/sites/hqdag8_quad/code/libs/datatables.min.js"/>
+<link rel="stylesheet" type="text/css" href="sites/hqdag8_quad/code/css/datatables.min.css"/>
+<script type="text/javascript"  src="/sites/hqdag8_quad/code/libs/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="/sites/hqdag8_quad/code/libs/datatables.min.js"></script>
+<script type="text/javascript" src="/sites/hqdag8_quad/code/libs/mathJS-5.2.0.js"></script>
+<script type="text/javascript" src="/sites/hqdag8_quad/code/libs/moment.js"></script>
+<script type="text/javascript" src="/sites/hqdag8_quad/code/js/grid.js"></script>
+<script type="text/javascript" src="/sites/hqdag8_quad/code/js/QuadModule.js"></script>
+<script type="text/javascript" src="/sites/hqdag8_quad/code/js/AllQuadServices.js"></script>
+<script type="text/javascript" src="/sites/hqdag8_quad/code/js/Program/Key4_Controllers.js"></script>
+
+
+<div ng-app="app">
+	<div ng-controller="PageLoadCtrl as pageload"></div>
+	<div ng-controller="UserSelectCtrl as userSelect"></div>
+</div>
+
+
+<div>
+    <h1>1. Register User</h1>
+    <br/>
+    <h1>2. Add/Remove Registered User to/from SharePoint Group</h1>
+
+</div>
+
+
+<div>
+
+        <table width="50%" cellpadding="10" cellspacing="1">
+
+                <tbody>
+            
+                    <tr>
+            
+                        <td>1. Register User: </td>       
+                        <td><div id="peoplePickerDiv"></div></td>         
+                        <td><button id="pp1">Register User</button></td>          
+                        <td><span id="pp11"></span></td>
+            
+                    </tr>
+            
+                    <tr>
+            
+                        <td>2. Add/Remove User to SharePoint Group:</td>            
+                        <td><div id="anotherPeoplePickerDiv"></div></td>  
+                        <td><button id="pp2">Add User to SharePoint Group</button></td>  
+                        <td><button id="pp3">Remove User to SharePoint Group</button></td>                          
+                        <td><span id="pp21"></span></td>
+            
+                    </tr>
+            
+                </tbody>
+            
+            </table>
+        
+
+</div><head><title>quadGroups</title></head>

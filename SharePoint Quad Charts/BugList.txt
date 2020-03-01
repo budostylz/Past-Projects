@@ -1,0 +1,4 @@
+1. Clear Key 4s from Key 4 -> Root Selection
+2. Clear LINs from LIN -> Root Selection
+3. A2C2S root selection do not show key 4
+4. Reset POM allocation when root and key 4 are unselected

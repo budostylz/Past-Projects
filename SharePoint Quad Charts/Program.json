@@ -1,0 +1,44 @@
+Program{
+	
+	BOS{
+		Root1{
+		  Key4{
+			Key4A{
+			  Count:num
+			  
+
+			},
+
+			Key4B{
+			  Count:num
+
+			}
+
+		  },
+		  
+   		  LIN{
+			LINA{
+			 Count:num
+
+			},
+
+			LINB{
+			 Count:num
+
+			}
+
+
+		  }
+
+		},
+
+		Root2{
+		  ...
+
+		}
+
+	}
+
+
+
+}

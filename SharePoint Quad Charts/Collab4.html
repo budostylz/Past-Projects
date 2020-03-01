@@ -1,0 +1,402 @@
+
+
+
+
+
+
+
+
+    
+    
+<table style="width:100%">
+
+    <tr>
+        <td>
+
+                <div id="programmatic-overview">
+    
+                        <h1>Programmatic Overview</h1>
+                        <div id="lastModified-Overview"><span id="modifiedOverview"></span></div>
+                        <table>
+                            <tr><td>Vendor:</td><td><input type="text" id="vendor" class="progOverview"></td><td>ACAT Level:</td><td><input type="text" id="acatlevel" class="progOverview"></td></tr>
+                            <tr><td>Rqmt Owner</td><td><input type="text" id="req-owner" class="progOverview"></td><td>Current Milestone:</td><td><input type="text" id="milestone" class="progOverview"></td></tr>
+                            <tr><td>Type of Contract:</td><td><input type="text" id="contractType" class="progOverview"></td><td>FRP:</td><td><input type="text" id="frp" class="progOverview"></td></tr>
+                            <tr><td>Date Range</td><td><input type="text" id="date-range" class="progOverview"></td><td>TRL:</td><td><input type="text" id="trl" class="progOverview"></td></tr>
+                
+                
+                            <tr><td>US States/Interest:</td>
+                                <td>
+                                    
+                                        <select id="state" name="state"><option value="---">---</option><option value="Alabama">Alabama</option><option value="Alaska">Alaska</option><option value="Arizona">Arizona</option><option value="Arkansas">Arkansas</option><option value="California">California</option><option value="Colorado">Colorado</option><option value="Connecticut">Connecticut</option><option value="Delaware">Delaware</option><option value="District of Columbia">District of Columbia</option><option value="Florida">Florida</option><option value="Georgia">Georgia</option><option value="Guam">Guam</option><option value="Hawaii">Hawaii</option><option value="Idaho">Idaho</option><option value="Illinois">Illinois</option><option value="Indiana">Indiana</option><option value="Iowa">Iowa</option><option value="Kansas">Kansas</option><option value="Kentucky">Kentucky</option><option value="Louisiana">Louisiana</option><option value="Maine">Maine</option><option value="Maryland">Maryland</option><option value="Massachusetts">Massachusetts</option><option value="Michigan">Michigan</option><option value="Minnesota">Minnesota</option><option value="Mississippi">Mississippi</option><option value="Missouri">Missouri</option><option value="Montana">Montana</option><option value="Nebraska">Nebraska</option><option value="Nevada">Nevada</option><option value="New Hampshire">New Hampshire</option><option value="New Jersey">New Jersey</option><option value="New Mexico">New Mexico</option><option value="New York">New York</option><option value="North Carolina">North Carolina</option><option value="North Dakota">North Dakota</option><option value="Northern Marianas Islands">Northern Marianas Islands</option><option value="Ohio">Ohio</option><option value="Oklahoma">Oklahoma</option><option value="Oregon">Oregon</option><option value="Pennsylvania">Pennsylvania</option><option value="Puerto Rico">Puerto Rico</option><option value="Rhode Island">Rhode Island</option><option value="South Carolina">South Carolina</option><option value="South Dakota">South Dakota</option><option value="Tennessee">Tennessee</option><option value="Texas">Texas</option><option value="Utah">Utah</option><option value="Vermont">Vermont</option><option value="Virginia">Virginia</option><option value="Virgin Islands">Virgin Islands</option><option value="Washington">Washington</option><option value="West Virginia">West Virginia</option><option value="Wisconsin">Wisconsin</option><option value="Wyoming">Wyoming</option></select>
+                
+                
+                                </td>
+                            </tr>
+                
+                
+                            <tr><td>COTS Options:</td><td><input type="text" id="cots-options" class="progOverview"></td></tr>
+                            <tr><td>APUC:</td><td><input type="text" id="apuc" class="progOverview"></td></tr>
+                
+                            <tr><td># of Program Rebaselines:</td><td><input type="text" id="rebaselines" class="progOverview"></td></tr>
+                            <tr><td>Obligation/Disbursement:</td><td><textarea rows="10" cols="30" id="obligation-disbursement" class="progOverview" style="width: 350px; height: 188px;"></textarea></td></tr>
+                            <tr><td>Min Sustainment Rate/yr:</td><td><input type="text" id="msr" class="progOverview"></td><td>Max Prod Rate/yr:</td><td><input type="text" id="mpr" class="progOverview"></td></tr>
+                        </table>
+                
+                        <a href="#"><div id="update-program-overview" class="blackbutton">Update</div></a>
+                
+                        
+                    
+                    </div>
+                
+
+        </td>
+        <td>
+
+                <div id="AAO-APO-RO" style="position:relative;left:50px;bottom:110px">
+    
+    
+                        <h1>AAO-APO-RO Distribution</h1>
+                        <div id="lastModified-AAO"><span id="modifiedSpanAAO"></span></div>
+                        <table id="grid2">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Element</th>
+                                    <th>AAO</th>
+                                    <th>APO</th>
+                                    <th>RPO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>1</td>
+                                    <td>Training base Quantity for TDAs</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaotda" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apotda" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="rotda" type="text" width="20px" readonly></td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>BOIP - OTOE(COMPO 1)</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaocompo1" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apocompo1" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="rocompo1" type="text" width="20px" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>BOIP - OTOE(COMPO 2)</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaocompo2" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apocompo2" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="rocompo2" type="text" width="20px" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>BOIP - OTOE(COMPO 3)</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaocompo3" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apocompo3" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="rocompo3" type="text" width="20px" readonly></td>
+                                </tr>
+
+                                <tr>
+                                    <td>5</td>
+                                    <td>Army Pre-Positioned Stock Unit Sets</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaosus" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="aposus" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="rosus" type="text" width="20px" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>APS Activity Sets</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaoaps" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apoaps" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="roaps" type="text" width="20px" readonly></td>
+                                </tr>
+                                 <tr>
+                                    <td>7</td>
+                                    <td>Army War Reserve Sustainment Stocks</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaoawr" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apoawr" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="roawr" type="text" width="20px" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>War Reserve Stocks for Allies</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaowrs" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apowrs" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="rowrs" type="text" width="20px" readonly></td>
+                                </tr>
+                    
+                                <tr>
+                                    <td>9</td>
+                                    <td>Operationsl Project Stocks</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaoops" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apoops" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="roops" type="text" width="20px" readonly></td>
+                                </tr>
+    
+                                <tr>
+                                    <td>10</td>
+                                    <td>Repair Cycle Float</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaorcf" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="aporcf" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="rorcf" type="text" width="20px" readonly></td>
+                                </tr>
+    
+                                <tr>
+                                    <td>11</td>
+                                    <td>Operations Readiness Float</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaoorf" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apoorf" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="roorf" type="text" width="20px" readonly></td>
+                                </tr>
+    
+                                <tr>
+                                    <td>12</td>
+                                    <td>Other TDA Requirements</td>
+                                    <td><input class = "AAOTable AAOSec" id="aaoo_tda" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="apoo_tda" type="text" width="20px" readonly></td>
+                                    <td><input class = "AAOTable AAOSec" id="roo_tda" type="text" width="20px" readonly></td>
+                                </tr>
+        
+        
+        
+                                
+                            </tbody>
+    
+                        </table>
+                        <div style="position:relative;left:500px"><strong>AAO-Army Acquisition Objective</strong></div>
+                        <div style="position:relative;left:500px"><strong>APO-Army Procurement Objective</strong></div>
+                        <div style="position:relative;left:500px"><strong>RO-Retention Objective</strong></div>
+
+                        
+                        
+                        
+
+                
+                    
+                
+                </div>
+    
+
+        </td>
+
+
+    </tr>
+
+    <tr>
+        <td>
+
+                <div id="POM-Allocation-Section">
+    
+    
+                
+                        <h1>POM Allocation</h1>
+                        <strong>Actual amount funded</strong>
+                        <div id="lastModified-ReqCap"><span id="modifiedSpanPOMAllo"></span></div>
+                        <table id="grid1">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                    <th>FY19</th>
+                                    <th>FY20</th>
+                                    <th>FY21</th>
+                                    <th>FY22</th>
+                                    <th>FY23</th>
+                                    <th>FY24</th>
+                                    <th>FY25</th>
+                                    <th>FY21 - 25</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <tr>
+                                    <td>1</td>
+                                    <td>RDTE</td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtefy19" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtefy20" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtefy21" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtefy22" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtefy23" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtefy24" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtefy25" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="rdtePOMPeriod" type="text" width="20px" readonly></td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>PROC</td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procfy19" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procfy20" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procfy21" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procfy22" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procfy23" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procfy24" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procfy25" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="procPOMPeriod" type="text" width="20px" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Other</td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherfy19" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherfy20" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherfy21" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherfy22" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherfy23" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherfy24" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherfy25" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="otherPOMPeriod" type="text" width="20px" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Total</td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalfy19" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalfy20" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalfy21" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalfy22" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalfy23" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalfy24" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalfy25" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable APPNSec" id="totalPOMPeriod" type="text" width="20px" readonly></td>
+                                </tr>
+                                 <tr>
+                                    <td>5</td>
+                                    <td>Quantity</td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityfy19" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityfy20" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityfy21" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityfy22" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityfy23" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityfy24" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityfy25" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable QuantitySec" id="quantityPOMPeriod" type="text" width="20px" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>MYC Floor</td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorfy19" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorfy20" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorfy21" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorfy22" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorfy23" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorfy24" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorfy25" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable MYCSec" id="mycfloorPOMPeriod" type="text" width="20px" readonly></td>
+                                </tr>
+                    
+                                <tr>
+                                    <td>7</td>
+                                    <td>Deep Dive</td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy19" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy20" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy21" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy22" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy23" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy24" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivefy25" type="text" width="20px" readonly></td>
+                                    <td><input class = "POMAllocTable DeepDiveSec" id="deepdivePOMPeriod" type="text" width="20px" readonly></td>
+                                </tr>
+                                
+                            </tbody>
+        
+        
+        
+        
+                        </table>
+
+                        <table>
+                                <tr>
+                                    <td>Deep Dive Impacts:</td><td><input type="text" id="deep-dive-impacts" class = "POMAllocSec" size="50"></td>
+                                    <td>Congressional Marks:</td><td><input type="text" id="congressional-marks" class = "POMAllocSec" size="50"></td>
+            
+                                </tr>
+                                <tr>
+                                    <td>PDM:</td><td><input type="text" id="pdm" class = "POMAllocSec" size="50"></td>
+                                    <td>Other funding issues:</td><td><input type="text" id="funding" class = "POMAllocSec" size="50"></td>
+                                </tr>
+                                <tr>
+                                    <td>MoD Level:</td><td><input type="text" id="MODLevel" class = "POMAllocSec" size="50"></td>
+                                </tr>
+                
+                
+                        </table>
+        
+                        <a href="#"><div id="update-POM-Allo-Info" class="blackbutton">Update</div></a>
+
+                    
+                    
+            
+                        
+                        
+                    
+                    
+                    
+                    
+                
+                </div>
+        
+
+        </td>
+        <td>
+
+                <div id="Program-Assessment" style="position:relative;bottom:140px;left:50px">
+                        <div id="lastModified-program-assessment"><span id="modified-program-assessment"></span></div>
+
+                        <h1>Program Assessment(Under Construction)</h1>
+    
+                        <table style="width:50%">
+                                <tr>
+                                    <td>MDO Viability Assessment:</td>
+                                    <td>
+                                        <input type="text" id="mdo-assessment-status" class = "ProgramAssessment" size="10" readonly>
+                                        <input type="text" id="mdo-viability-assessment-text" class = "ProgramAssessment" size="100" readonly>
+                                    </td>
+                                </tr>
+                                <tr>
+                                        <td>Programmatic Assessment:</td>
+                                        <td>
+                                            <input type="text" id="program-assessment-status" class = "ProgramAssessment" size="10" readonly>
+                                            <input type="text" id="programmatic-assessment-text" class = "ProgramAssessment" size="100" readonly>
+                                        </td>
+    
+    
+                                </tr>
+                                <tr>
+                                        <td>COE CG Assessment:</td>
+                                        <td>
+                                            <input type="text" id="coe-cg-assessment-status" class = "ProgramAssessment" size="10" readonly>
+                                            <input type="text" id="COE-CG-Assessment-text" class = "ProgramAssessment" size="100" readonly>
+                                        </td>
+    
+    
+                                </tr>
+                                <tr>
+                                        <td>EE PEG Co-Chair Recomendation:</td>
+                                        <td>
+                                            <input type="text" id="EE-PEG-Rec-text" class = "ProgramAssessment" size="100" readonly>
+                                        </td>
+    
+    
+                                </tr>
+                
+                        </table>
+        
+    
+    
+    
+    
+                </div>
+    
+
+        </td>
+
+    </tr>
+    
+
+
+
+</table>
+
+

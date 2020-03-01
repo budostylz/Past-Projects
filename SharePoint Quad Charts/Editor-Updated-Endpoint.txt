@@ -1,0 +1,3 @@
+http://sitecollectionurl/_layouts/Upload.aspx?List={530F1E65-F704-4A3D-91FA-D12E498513F1}
+https://portal.teksouth.com/sites/dta/lewis/programs/_layouts/Upload.aspx?List={530F1E65-F704-4A3D-91FA-D12E498513F1}
+https://portal.teksouth.com/sites/dta/lewis/programs/_api/web/lists/getbytitle('Program1')/items?$select=Editor/Title&$expand=Editor

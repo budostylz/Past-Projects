@@ -1,0 +1,232 @@
+
+
+      vm.BOSName = data[0]; 
+	  console.log(vm.BOSName);
+     //var db = TAFFY(data[1]);//BOS Names
+     //vm.BOSRoot = db().distinct('Root');
+     //vm.Program = data[2];
+     //vm.key4Results = data[3];
+  
+  	 //console.log(vm.key4Results);
+     //console.log(vm.BOSName);
+     //console.log(vm.BOSRoot);
+     //console.log(vm.Program);
+     
+     
+     //build program drop down
+     
+     
+    jQuery( document ).ready(function() {  
+         
+       
+       		//console.log(jQuery('#Programs'));
+           //console.log(jQuery('#BOSNames'));
+          //console.log(jQuery('#RootNames'));
+          
+          jQuery('#ProgramsInput').hide();
+          jQuery('#BOSInput').hide();
+          jQuery('#RootInput').hide();
+          jQuery('#saveProg').hide();
+
+
+          
+          //load Programs
+           for(var i = 0; i < vm.Program.length; i++){    
+            var _programs = vm.Program[i];
+            //console.log(_programs);
+            jQuery("#Programs").append('<option>'+_programs+'</option>');  
+            if(i === 0){//set Program 1
+            	//console.log('set program 1');
+              jQuery('#programlabel').text(_programs);          
+            }               
+           }//for(var i = 0; i < vm.Program.length; i++)
+          
+         
+          //load Portfolios
+          for(var i = 0; i < vm.BOSName.length; i++){      
+            var _bosname = (vm.BOSName[i]);
+            jQuery("#BOSNames").append('<option>'+_bosname+'</option>');
+           	 //console.log(_bosname);    
+           }   
+          
+         
+         
+           //load initial BOS Root dropdown
+          jQuery("#RootNames").find('option').remove();
+              
+          for(var i = 0; i < vm.BOSRoot.length; i++){      
+            var _bosroot = vm.BOSRoot[i];            
+            //console.log(_bosroot);            
+            jQuery("#RootNames").append('<option>'+_bosroot+'</option>');
+            //console.log(vm.BOSName[i]);    
+          }  
+          
+          
+
+
+          var bos = jQuery("#BOSNames option:selected").text();
+          var root = jQuery("#RootNames option:selected").text();
+          var key4Results = $GetDataService.getData4(bos, root); 
+          var completed2 = $q.all([key4Results]);
+
+
+          completed2.then(function (data) {
+               vm.Key4 = data[0];     
+               var keydb = TAFFY(vm.Key4);       
+          		 vm.key4 = keydb().distinct('OData__x004b_ey4');
+				 jQuery('#key4div').empty();//empty Key 4 div
+
+               //console.log(vm.Key4);
+
+               jQuery('#Key4s').find('option').remove();
+                    for(var j = 0; j < vm.key4.length; j++){
+                      //console.log(vm.Key4[j].OData__x004b_ey4);
+                      jQuery('#key4div').append('<p></p><input type="checkbox" value="'+vm.Key4[j].OData__x004b_ey4+'"> '+vm.Key4[j].OData__x004b_ey4+'<a href="#" id="All" value="'+vm.Key4[j].OData__x004b_ey4+'"> All </a><a href="#" id="Some" value="'+vm.Key4[j].OData__x004b_ey4+'">| Some</a>');
+					  
+                      
+                      if(j === 0){
+                      	 //console.log(vm.Key4[j]);
+                         var key4Results2 = $GetDataService.getData5(vm.key4[j]); 
+                         var completed3 = $q.all([key4Results2]);
+                         completed3.then(function (data) {                   
+                           vm.FYs = data[0];						   
+                           //update grid
+                           var update = $GetDataService.updateData(vm.FYs);
+                          
+                          
+                         });
+                         
+                         
+                         
+                      }
+                      
+                      
+               			}//for(var j = 0; j < vm.Key4.length; j++)
+
+          			});//completed2
+
+
+
+       
+
+    		});//document.ready()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var valueSelected = this.value;    
+      	var BOSRootResults = $GetDataService.getData2(valueSelected);
+        var completed = $q.all([BOSRootResults]);
+      
+       //console.log(valueSelected);
+    
+        
+
+    
+       completed.then(function (data) {
+       
+          var db = TAFFY(data[0]);       
+          vm.BOSRoot = db().distinct('Root');
+          //console.log(data[0]);
+         
+          //console.log( jQuery("#BOSNames option:selected").text() );
+          //console.log( jQuery("#RootNames option:selected").text() );
+          
+          
+          jQuery("#RootNames").find('option').remove();
+          
+          for(var i = 0; i < vm.BOSRoot.length; i++){      
+            var _bosroot = vm.BOSRoot[i];
+            
+            //console.log(_bosroot);
+            
+            jQuery("#RootNames").append('<option>'+_bosroot+'</option>');
+             
+
+            if( i === 0 ){//GET KEY 4 FOR FIRST ROOT SELECTION
+              //console.log(_bosroot);  
+
+              var key4Results = $GetDataService.getData4(valueSelected, _bosroot); 
+              var completed2 = $q.all([key4Results]);
+
+              completed2.then(function (data) {
+
+									 
+                   vm.Key4 = data[0];
+                   var keydb = TAFFY(vm.Key4);       
+          		   vm.key4 = keydb().distinct('OData__x004b_ey4');
+                   //console.log(vm.key4); 
+
+                    jQuery('#key4div').empty();//empty Key 4 div 
+                   
+                    for(var j = 0; j < vm.key4.length; j++){
+                      //console.log(vm.Key4[j]);
+                    
+                      
+                      //append to Key 4 Dropdown
+                      jQuery('#key4div').append('<p></p><input type="checkbox" value="'+vm.Key4[j].OData__x004b_ey4+'"> '+vm.Key4[j].OData__x004b_ey4+'<a href="#" id="All" value="'+vm.Key4[j].OData__x004b_ey4+'"> All </a><a href="#" id="Some" value="'+vm.Key4[j].OData__x004b_ey4+'">| Some</a>');
+
+                      
+                      if(j === 0){
+                      	 //console.log(vm.Key4[j]);
+                         var key4Results = $GetDataService.getData5(vm.key4[j]);
+                         var completed3 = $q.all([key4Results]);
+                         completed3.then(function (data) {           
+                           vm.FYs = data[0];
+                           //update grid
+                           var update = $GetDataService.updateData(vm.FYs);                                     
+                         });
+
+                         
+                      }
+                      
+                      
+                    }//for(var j = 0; j < vm.Key4.length; j++)
+                    
+                   
+                  
+                  //console.log( jQuery('#Key4s') );
+                  
+                    
+
+
+              });
+
+
+
+            }
+
+       		}  //for(var i = 0; i < vm.BOSRoot.length; i++)  
+          
+          
+       
+      });//completed
+        
+        //var db = TAFFY(data[1]);
+        //vm.BOSRoot = db().distinct('Root');
+			
+			
+			
+			

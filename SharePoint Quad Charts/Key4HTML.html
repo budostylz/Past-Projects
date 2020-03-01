@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Learning Redux </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.min.js"></script>
+        <script src="https://unpkg.com/react@16.3.0-alpha.1/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16.3.0-alpha.1/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+        <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
+        <script src="https://unpkg.com/redux-thunk@2.2.0/dist/redux-thunk.min.js"></script>
+        <script src="https://unpkg.com/react-redux@5.0.6/dist/react-redux.min.js"></script>
+    </head>
+
+    <body>
+
+        <div id="app"></div>
+		
+		<h1> Check Console </h1>
+
+        <!-- State Management -->
+        <script type='text/javascript'>
+
+		//Library Code
+		function createStore(reducer){ // The Store
+			// The store should have four parts
+			// 1. The state
+			// 2. Get the state.
+			// 3. Listen to changes on the state
+			// 4. Update the state
+
+			let state //hold state of entire application
+			let listeners = []
+
+			const getState = () => state //provide way to get access to state
+
+			const subscribe = (listener) => {//push function being passed to subscibe when invoked
+				listeners.push(listener)
+				return () => {
+					listeners = listeners.filter((l) => l !== listener)//filter out original listener function once subscribed is invoked
+				}
+			}
+
+			const dispatch = (action) =>{//receive action to tell dispatch the specific event that occurs inside application
+				state = reducer(state, action);//call app function
+				listeners.forEach((listener) => listener())
+			}
+
+
+
+			return { //return state when createStore is invoked
+				getState,
+				subscribe,
+				dispatch
+			}
+
+
+		}
+
+
+
+
+		/*
+			Reduce function todos() inputs are state and action.
+			Output is new state.
+		*/
+		// App Code
+
+		//define action names
+		const GET_PROGRAM = 'GET_PROGRAM';
+		const GET_APPN = 'GET_APPN';
+		const GET_APPN_ROOT = 'GET_APPN_ROOT';
+		const GET_ROOT = 'GET_ROOT';
+		const GET_FY = 'GET_FY';
+		
+		const GET_FY_UFR = 'GET_FY_UFR';
+		const GET_APPN_UFR = 'GET_APPN_UFR';
+		
+		const GET_KEY4 = 'GET_KEY4';
+
+		
+
+		//action creators return actions if we want to get an action or dispatch an action
+		function getProgramAction(program){
+
+			return{
+				type: GET_PROGRAM,
+				program
+			}
+		}
+		
+		function getAPPNAction(appn){
+
+			return{
+				type: GET_APPN,
+				appn
+			}
+		}
+		
+		function getRootAction(root){
+
+			return{
+				type: GET_ROOT,
+				root
+			}
+		}
+
+		
+		function getAPPNRootAction(appnRoot){
+
+			return{
+				type: GET_APPN_ROOT,
+				appnRoot
+			}
+		}
+		
+		function getFYAction(fy){
+
+			return{
+				type: GET_FY,
+				fy
+			}
+		}
+
+		
+		
+		function getFYUFRAction(fy){
+
+			return{
+				type: GET_FY_UFR,
+				fy
+			}
+		}
+		
+		function getAPPNUFRAction(appn){
+
+			return{
+				type: GET_APPN_UFR,
+				appn
+			}
+		}
+		
+		function getKey4Action(key4){
+
+			return{
+				type: GET_KEY4,
+				key4
+			}
+		}
+
+
+
+
+
+
+
+		function programActions (state = [], action){
+
+			switch(action.type){
+				case GET_PROGRAM :
+						return state.concat([action.program])//new state will create, mutation will not occure because concat will return new array to avoid modifying state
+				default : 
+					return state
+			}
+			
+		}
+
+		function appnActions (state = [], action){
+
+			switch(action.type){
+				case GET_APPN :
+						return state.concat([action.appn])//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+				default : 
+					return state
+
+
+			}
+		}
+		
+		function rootActions (state = [], action){
+
+			switch(action.type){
+				case GET_ROOT :
+						return state.concat([action.root])//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+				default : 
+					return state
+
+
+			}
+		}
+
+		
+		function appnRootActions (state = [], action){
+
+			switch(action.type){
+				case GET_APPN_ROOT :
+						return state.concat([action.appnRoot])//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+				default : 
+					return state
+
+
+			}
+		}
+		
+		function fyActions (state = [], action){
+
+			switch(action.type){
+				case GET_FY :
+						return state.concat([action.fy])//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+				default : 
+					return state
+
+
+			}
+		}
+
+			
+		function ufrActions (state = [], action){
+
+			switch(action.type){
+				case GET_FY_UFR :
+						return state.concat([action.fy])//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+				default : 
+					return state
+
+
+			}
+		}
+		
+		function appnUFRActions (state = [], action){
+
+			switch(action.type){
+				case GET_APPN_UFR :
+						return state.concat([action.appn])//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+				default : 
+					return state
+
+
+			}
+		}
+		
+		function key4Actions (state = [], action){
+
+			switch(action.type){
+				case GET_KEY4 :
+						return state.concat([action.key4])//new state will create, mutation will not occur because concat will return new array to avoid modifying state
+				default : 
+					return state
+
+
+			}
+		}
+
+
+
+
+		function app (state = {}, action){
+			return {
+				Program: programActions(state.Program, action),
+				APPN: appnActions(state.APPN, action),
+			    ROOT: rootActions(state.ROOT, action),
+				APPNROOT: appnRootActions(state.APPNROOT, action),
+				KEY4: key4Actions(state.KEY4, action),
+				FY: fyActions(state.FY, action),
+				FY_UFR: ufrActions(state.FY_UFR, action),
+				APPN_UFR: appnUFRActions(state.APPN_UFR, action),
+
+
+			}
+		}
+
+
+
+		const store = createStore(app) //user invokes to return store
+
+		store.subscribe(() => {//detects state changes in store
+			console.log('The new state is: ', store.getState())
+		})
+
+		//dispatch actions
+		
+		store.dispatch(getProgramAction({// populate Program Properties Textbox
+			PROGRAMID: {
+				
+					1: {
+						Program : "Program Name",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Key4: "Key4 text"		
+					}
+					
+				
+				}
+		}))
+
+		
+		
+		store.dispatch(getFYAction({//Get Funded FY Horizontal Data
+			FYID: {
+				
+					1: {
+					
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						APPN: "APPN",
+						Root : "Root Name",
+						Key4 : "Key4",
+						FY19: [100],
+						FY20: [200],
+						FY21: [300],
+						FY22: [400],
+						FY23: [500],
+						FY24: [600],
+						FY25: [700],
+						
+
+							
+					},
+					
+					2: {
+					
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						APPN: "APPN",
+						Root : "Root Name",
+						Key4 : "Key4",
+						FY19: [100],
+						FY20: [200],
+						FY21: [300],
+						FY22: [400],
+						FY23: [500],
+						FY24: [600],
+						FY25: [700],
+					}		
+				
+				}
+		}))
+		
+		store.dispatch(getFYUFRAction({//Get Critical FY Horizontal Data
+			FY_UFRID: {
+				
+					1: {
+					
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						APPN: "APPN",
+						Root : "Root Name",
+						Key4 : "Key4",
+						FY19: [100],
+						FY20: [200],
+						FY21: [300],
+						FY22: [400],
+						FY23: [500],
+						FY24: [600],
+						FY25: [700],
+						
+
+							
+					},
+					
+					2: {
+					
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						APPN: "APPN",
+						Root : "Root Name",
+						Key4 : "Key4",
+						FY19: [100],
+						FY20: [200],
+						FY21: [300],
+						FY22: [400],
+						FY23: [500],
+						FY24: [600],
+						FY25: [700],
+					}		
+				
+				}
+		}))
+
+		
+		store.dispatch(getAPPNAction({ //Get Funded FY Vertical Data by Appropriation 
+			APPNID: {
+				
+					1: {
+						APPN: "APPN Name",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Root : "Root Name",
+						FY19: [100, 200, 300, 400],
+						FY20: [100, 200, 300, 400],
+						FY21: [100, 200, 300, 400],
+						FY22: [100, 200, 300, 400],
+						FY23: [100, 200, 300, 400],
+						FY24: [100, 200, 300, 400],
+						FY25: [100, 200, 300, 400],
+
+
+							
+					},
+					
+					2: {
+						APPN: "APPN Name",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Root : "Root Name",
+						FY19: [100, 200, 300, 400],
+						FY20: [100, 200, 300, 400],
+						FY21: [100, 200, 300, 400],
+						FY22: [100, 200, 300, 400],
+						FY23: [100, 200, 300, 400],
+						FY24: [100, 200, 300, 400],
+						FY25: [100, 200, 300, 400],
+
+
+
+					}		
+				
+				}
+		}))
+		
+		
+		store.dispatch(getAPPNUFRAction({ //Get Critical FY Vertical Data by Appropriation 
+			APPN_UFR_ID: {
+				
+					1: {
+						APPN: "APPN Name",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Root : "Root Name",
+						FY19: [100, 200, 300, 400],
+						FY20: [100, 200, 300, 400],
+						FY21: [100, 200, 300, 400],
+						FY22: [100, 200, 300, 400],
+						FY23: [100, 200, 300, 400],
+						FY24: [100, 200, 300, 400],
+						FY25: [100, 200, 300, 400],
+
+
+							
+					},
+					
+					2: {
+						APPN: "APPN Name",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Root : "Root Name",
+						FY19: [100, 200, 300, 400],
+						FY20: [100, 200, 300, 400],
+						FY21: [100, 200, 300, 400],
+						FY22: [100, 200, 300, 400],
+						FY23: [100, 200, 300, 400],
+						FY24: [100, 200, 300, 400],
+						FY25: [100, 200, 300, 400],
+
+
+
+					}		
+				
+				}
+		}))
+		
+		store.dispatch(getKey4Action({ //Get program key 4
+			KEY4ID: {
+				
+					1: {
+						Root : "Root Name",
+						APPN: "APPN",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Key4: ["Key4"],
+
+						
+
+							
+					},
+					
+					2: {
+						Root : "Root Name",
+						APPN: "APPN",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Key4: ["Key4"],
+
+
+					}		
+				
+				}
+		}))
+
+
+		
+
+
+
+		
+		
+		
+		/*
+		
+
+
+
+		store.dispatch(getAPPNAction({
+			APPNID: {
+				
+					1: {
+						APPN: "APPN Name",
+						Root : "Root Name",
+						Portfolio: "Air Defense",
+						BOS: "AD",
+						Key4: "Key4 text"		
+					}
+					
+				
+				}
+		}))
+
+		
+		store.dispatch(getAPPNRootAction({
+			APPNROOTID: {
+				
+					1: {
+						RootID : [1, 2],
+						APPNID: [1, 2],
+						
+
+							
+					},
+					
+					2: {
+						RootID : [1, 2],
+						APPNID: [1, 2],
+
+						
+
+					}		
+				
+				}
+		}))
+		
+		store.dispatch(getRootAction({
+			ROOTID: {
+				
+					1: {
+						Root : "Root Name",
+						APPN: "APPN",
+						Portfolio: "Air Defense",
+						BOS: "AD"
+
+							
+					},
+					
+					2: {
+						Root : "Root Name",
+						APPN: "APPN",
+						Portfolio: "Air Defense",
+						BOS: "AD"
+					}		
+				
+				}
+		}))
+		
+		store.dispatch(getRootAction({
+			ROOTID: {
+				
+					1: {
+						Root : "Root Name",
+						APPN: "APPN",
+						Portfolio: "Air Defense",
+						BOS: "AD"
+
+							
+					},
+					
+					2: {
+						Root : "Root Name",
+						APPN: "APPN",
+						Portfolio: "Air Defense",
+						BOS: "AD"
+					}		
+				
+				}
+		}))
+		
+
+
+
+		*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               
+
+        </script>
+
+        <!-- React App -->
+        <script type="text/babel">
+
+
+        </script>
+    </body>
+</html>

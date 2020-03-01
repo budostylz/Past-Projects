@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Pivot Table </title>
+
+		 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.13.0/pivot.min.css">
+		 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>		
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.13.0/pivot.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.6.0/tips_data.min.js"></script>
+    </head>
+
+    <body>
+
+        <div id="app"></div>
+		
+		<h1> Pivot</h1>
+		<div id="output"></div>
+		
+		
+
+        <!-- State Management -->
+        <script type='text/javascript'>
+
+
+		
+	$(function () {
+	
+        var lookupColour = ["blue", "yellow"];
+		
+            var rawData = [
+            { color: 0, shape: "circle"},
+            { color: 1, shape: "circle"},
+            { color: 1, shape: "circle"},
+            { color: 0, shape: "triangle"},
+            { color: 0, shape: "triangle"},
+            { color: 1, shape: "triangle"}
+            ];
+			
+        var inputFunction = function (callback) {
+			//console.log(callback)
+			
+            rawData.forEach(function (element, index) {
+			
+				console.log('element',element)
+				console.log('index',index)
+				
+                callback({
+                    color: lookupColour[element.color],
+                    shape: element.shape
+                });
+            });
+        };
+
+        $("#output").pivot(inputFunction, {
+            rows: ["color"],
+            cols: ["shape"]
+        });
+		
+		console.log( 'output',$("#output") )
+    });
+
+	 
+
+		
+
+
+
+
+
+
+	
+
+
+
+
+		
+		
+		
+
+
+
+
+
+
+		
+		
+
+		
+
+	
+
+
+
+               
+
+        </script>
+
+        <!-- React App -->
+        <script type="text/babel">
+
+
+        </script>
+    </body>
+</html>
