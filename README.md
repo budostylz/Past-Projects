@@ -7,9 +7,12 @@
 
 * SharePoint Quad Charts is built to improve decision making for financial domains within military forces.
 
-## [.NET SharePoint App(Client Center)](https://github.com/budostylz/Past-Projects/tree/master/CCPProject)
+## [.NET SharePoint App(Client Center)](https://github.com/budostylz/Past-Projects/tree/master/ClientCenterProject)
 
 * Client Center project is built for private client which handles contract/proposal development through automation.
+
+## [Client Center Project Business Plan](https://github.com/budostylz/Past-Projects/tree/master/ClientCenterProject?Business Plan.docx?raw=true);
+
 
 
 

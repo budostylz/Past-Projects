@@ -1,0 +1,15 @@
+﻿<Solution 
+  xmlns="http://schemas.microsoft.com/sharepoint/" 
+  SolutionId="23b497a6-4764-4e83-94b6-55545f871165" 
+  SharePointProductVersion="15.0"
+  Title="Client Center Project"
+  Description="Sets Library and Item Level Permissions for Proposals and Contracts Document Libraries. Sets Client, Library and Item Permissions Upon Site Provisioning."
+  ResetWebServerModeOnUpgrade="Recycle">
+  <Assemblies>
+    <Assembly Location="ClientCenterProject.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="ClientCenterProject_InitPermissions\Feature.xml" />
+    <FeatureManifest Location="ClientCenterProject_AttachPermissions\Feature.xml" />
+  </FeatureManifests>
+</Solution>

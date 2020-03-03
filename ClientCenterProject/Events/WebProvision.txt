@@ -1,0 +1,129 @@
+﻿using System;
+using System.Security.Permissions;
+using Microsoft.SharePoint;
+using Microsoft.SharePoint.Utilities;
+using Microsoft.SharePoint.Workflow;
+
+namespace CCPEvents.WebProvision
+{
+    /// <summary>
+    /// Web Events
+    /// </summary>
+    public class WebProvision : SPWebEventReceiver
+    {
+        /// <summary>
+        /// A site was provisioned.
+        /// </summary>
+        public override void WebProvisioned(SPWebEventProperties properties)
+        {
+
+            try
+            {
+                using (SPWeb parentWeb = properties.Web.Site.RootWeb)
+                {
+                    using (SPWeb web = properties.Web)
+                    {
+
+
+                                
+                                /* Get Log List and Set Log Item */
+                                SPList eventLog = parentWeb.Lists.TryGetList("CCPEventFeatureLog");
+                                SPListItemCollection eventLogItems = eventLog.Items;
+                                SPListItem eventLogItem = eventLogItems.Add();
+
+                                /* Get CCPList */ 
+                                SPList ccpList = parentWeb.Lists.TryGetList("Client Center Permissions2");
+
+                                /* Set Client Permissions */ 
+                                if (!web.IsRootWeb)//Target webs
+                                {
+                                    //Set Client Permissions
+                                    SitePermissions.SetWebPermissions(web, ccpList, eventLogItem);
+                                }
+
+                               
+
+                                /* Set Contracts Permissions */
+                                SPList contracts = web.Lists.TryGetList("Contracts");
+                                if (contracts != null)
+                                {
+                                    ListPermissions.SetListPermissions(web, ccpList, contracts, eventLogItem);
+                                    //Get Items for Contracts
+                                    SPQuery contractsQuery = new SPQuery();
+                                    contractsQuery.ViewXml = "<View Scope='RecursiveAll'/>";
+                                    SPListItemCollection contractItems = contracts.GetItems(contractsQuery);
+
+
+                                    //Set Permissions for Contract BU Folders
+                                    foreach (SPListItem contractItem in contractItems)
+                                    {
+                                        ItemPermissions.SetItem(web, ccpList, contractItem);//set contractItem permission
+                                    }
+
+                                }//if
+                                else
+                                {
+                                    //Log
+                                    eventLogItem["Contracts"] = "No Contracts at: " + web.Title + " : " + web.Url;
+                                    eventLogItem.Update();
+                                }
+
+                                /* Set Proposals Permissions */
+                                SPList proposals = web.Lists.TryGetList("Proposals");
+                                if (proposals != null)
+                                {
+                                    ListPermissions.SetListPermissions(web, ccpList, proposals, eventLogItem);
+
+                                    //Get Items for Proposals
+                                    SPQuery proposalsQuery = new SPQuery();
+                                    proposalsQuery.ViewXml = "<View Scope='RecursiveAll'/>";
+                                    SPListItemCollection proposalItems = proposals.GetItems(proposalsQuery);
+
+                                    //Set Permissions for Proposal BU Folders
+                                    foreach (SPListItem proposalItem in proposalItems)
+                                    {
+                                        ItemPermissions.SetItem(web, ccpList, proposalItem);//set proposalItem permission
+                                    } 
+
+                                }//if
+                                else
+                                {
+                                    //Log
+                                    eventLogItem["Proposals"] = "No Proposals at: " + web.Title + " : " + web.Url;
+                                    eventLogItem.Update();
+                                }
+                             
+
+                        /* Set Terms */
+
+
+                        /* Activate Feature to attach receiver to both Proposals and Contracts */
+                        web.Features.Add(new Guid("c92dfa8e-f8b2-4eb8-b120-10b2e40eea87"));
+
+                        
+
+                    }//using childWeb
+                }//using parentWeb
+                
+            }
+            catch(Exception e)
+            {
+                using (SPWeb parentWeb = properties.Web.Site.RootWeb)
+                {
+                    SPList _eventLog = parentWeb.Lists.TryGetList("CCPEventFeatureLog");
+                    SPListItemCollection eventLogItems = _eventLog.Items;
+                    SPListItem eventLogItem = eventLogItems.Add();
+                    eventLogItem["CCPWebEvents"] = e.Message;
+                }//using parentWeb
+
+
+            }
+
+
+
+
+        }//WebProvisioned()
+
+
+    }//WebProvision{}
+}
