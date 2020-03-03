@@ -11,7 +11,9 @@
 
 * Client Center project is built for private client which handles contract/proposal development through automation.
 
-## [Client Center Project Business Plan](https://github.com/budostylz/Past-Projects/blob/master/ClientCenterProject/Business%20Plan.docx?raw=true);
+## [Client Center Project Business Plan](https://github.com/budostylz/Past-Projects/blob/master/ClientCenterProject/Business%20Plan.docx?raw=true)
+
+* This is requirements coverage for Client Center Project Solution.
 
 
 
