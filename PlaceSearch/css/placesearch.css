@@ -1,0 +1,42 @@
+﻿ html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#travelMapView{
+    height: 100%;
+}
+
+#map{
+    width: 45%; 
+    height: 50%;
+    float:left;
+}
+
+#pano{
+    width: 50%; 
+    height: 50%;
+    float:left; 
+    top:0px 
+}
+
+
+
+#locationField{
+    z-index: 1;
+    position:absolute;
+    left:200px;
+
+   
+
+}
+
+#autocomplete{
+    width:175px;
+}
+
+#streetView{
+   text-align:right;
+}
+
