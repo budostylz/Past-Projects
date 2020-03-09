@@ -1,0 +1,263 @@
+
+<link
+href="https://mcscviper.usmc.mil/Scripts/css/bootstrap-custom.css"
+rel="stylesheet"
+/>
+<link
+href="https://mcscviper.usmc.mil/Scripts/css/jquery.dataTables.min.css"
+rel="stylesheet"
+/>
+<link
+href="https://mcscviper.usmc.mil/Scripts/css/dataTables.tableTools.min.css"
+rel="stylesheet"
+/>
+
+<style>
+* {
+  box-sizing: content-box !important;
+}
+</style>
+
+<!--<div id="checkinTable"></div>-->
+<div id="loading"><h2>Loading...</h2></div>
+<table id="checkinTable"></table>
+
+<script
+language="javascript"
+src="https://mcscviper.usmc.mil/Scripts/js/jquery.dataTables.min.js"
+type="text/javascript"
+></script>
+<script
+language="javascript"
+src="https://mcscviper.usmc.mil/Scripts/js/dataTables.tableTools.min.js"
+type="text/javascript"
+></script>
+
+
+<script language="javascript" src="/Scripts/js/moment/development/moment.js" type="text/javascript"></script>
+<script language="javascript" src="/Scripts/js/lodash/development/lodash.4.17.11.js" type="text/javascript"></script>
+<script language="javascript" src="/sites/vt/SiteAssets/apps/CICO Modifications/js/calculateDays.js" type="text/javascript"></script>
+<script type="text/javascript" src="/sites/vt/SiteAssets/apps/CICO%20Modifications/js/modifications.js">
+
+/*
+var isAdmin = false;
+
+$(document).ready(function() {
+  getUser();
+});
+
+function getUser() {
+  var call = $.ajax({
+    url:
+      _spPageContextInfo.webAbsoluteUrl +
+      "/_api/web/currentuser?$expand=groups",
+    method: "GET",
+    contentType: "application/json;odata=verbose",
+    headers: { Accept: "application/json;odata=verbose" },
+    success: function(data) {
+      $.each(data.d.Groups.results, function(i, obj) {
+        if (
+          obj.LoginName == "CICO_Contributors" ||
+          obj.LoginName == "HCM Military Manpower" ||
+          obj.LoginName == "G1 Admins" ||
+          obj.LoginName == "G2 Admins" ||
+          obj.LoginName == "G4 Admins" ||
+          obj.LoginName == "G6 Admins" ||
+          obj.LoginName == "Admin Officers" ||
+          obj.LoginName == "VIPER Administrators Owners"            
+
+        ) {
+          isAdmin = true;
+        }
+      });
+    },
+    error: function(data) {
+      console.log(data);
+    }
+  }).done(function() {
+    getData();
+  });
+}
+
+function getData() {
+  //REST Call to get list data
+  var table = "";
+  var intOrderColumn = 7; //non-Admin Days Since Arrival
+
+  if (isAdmin) {
+    table =
+      "<table><thead><tr><th>View</th><th>Edit</th><th>Last Name</th><th>First Name</th><th>Source</th><th>Organization</th><th>Location</th><th>Planned Arrival Date</th><th>Actual Arrival Date</th><th>Days Since Arrival</th></tr></thead><tbody>";
+    intOrderColumn = 8;
+  } else {
+    table =
+      "<table><thead><tr><th>View</th><th>Last Name</th><th>First Name</th><th>Source</th><th>Organization</th><th>Location</th><th>Planned Arrival Date</th><th>Actual Arrival Date</th><th>Days Since Arrival</th></tr></thead><tbody>";
+  }
+
+  var call = $.ajax({
+    url:
+      _spPageContextInfo.webAbsoluteUrl +
+      "/_api/web/lists/getbytitle('Check%20in')/items?$select=LastName,FirstName,ID,Source,Organization,Location,Actual_Arrival_Date,Planned_Arrival_Date,Admin_x0020_Completed,Cancelled,Account_Activated&$orderby=Planned_Arrival_Date desc&$top=500",
+    type: "GET",
+    dataType: "json",
+    headers: { Accept: "application/json;odata=verbose" },
+    success: function(data) {
+      console.log(data);
+      $.each(data.d.results, function(i, obj) {
+        if (
+          obj.Admin_x0020_Completed != null &&
+          obj.Admin_x0020_Completed.Description == "Completed"
+        ) {
+          return;
+        }
+        var daysSinceArrival = calculateDaysSinceArrival(
+          obj.Actual_Arrival_Date,
+          obj.Account_Activated
+        );
+
+        var arrivalDate = "";
+        var plannedArrivalDate = "";
+        if (obj.Actual_Arrival_Date != null) {
+          arrivalDate = new Date(obj.Actual_Arrival_Date);
+          arrivalDate =
+            arrivalDate.getMonth() +
+            1 +
+            "/" +
+            arrivalDate.getDate() +
+            "/" +
+            arrivalDate.getFullYear();
+        }
+
+        if (obj.Planned_Arrival_Date != null) {
+          plannedArrivalDate = new Date(obj.Planned_Arrival_Date);
+          plannedArrivalDate =
+            plannedArrivalDate.getMonth() +
+            1 +
+            "/" +
+            plannedArrivalDate.getDate() +
+            "/" +
+            plannedArrivalDate.getFullYear();
+
+     
+      Added to check for Planned Arrival Date > 7 days and Location is Quantico or Albany and has not been cancelled, and if so return to skip adding to table
+     
+            daysSincePlannedArrival = calculateDaysSincePlannedArrival(plannedArrivalDate);
+            //alert(daysSincePlannedArrival); for testing only
+
+            console.log(obj.Location);
+            if (((obj.Location != "Quantico" && obj.Location != "Albany") && (daysSincePlannedArrival > 7)) || (obj.Cancelled == true))
+              return;
+        }
+
+        if (isAdmin) {
+          table +=
+            "<tr><td><a target='_blank' href='https://mcscviper.usmc.mil/sites/vt/CICO/Lists/Check%20In%20Check%20Out/DisplayItem.aspx?ID=" +
+            obj.Id +
+            "&Source=https://mcscviper.usmc.mil/sites/vt/CICO/SitePages/Check%20In.aspx&ContentTypeId=0x0100E409E7611C4D6F4EBBEEECA751CEE45D'>View</a></td><td><a target='_blank' href='https://mcscviper.usmc.mil/sites/vt/CICO/Lists/Check%20In%20Check%20Out/EditItem.aspx?ID=" +
+            obj.Id +
+            "&Source=https://mcscviper.usmc.mil/sites/vt/CICO/SitePages/Check%20In.aspx&ContentTypeId=0x0100E409E7611C4D6F4EBBEEECA751CEE45D'>Edit</a></td><td>" +
+            obj.LastName +
+            "</td><td>" +
+            obj.FirstName +
+            "</td><td>" +
+            (obj.Source != null ? obj.Source : "") +
+            "</td><td>" +
+            (obj.Organization != null ? obj.Organization : "") +
+            "</td><td>" +
+            (obj.Location != null ? obj.Location : "") +
+            "</td><td>" +
+            plannedArrivalDate +
+            "</td><td>" +
+            arrivalDate +
+            "</td><td>" +
+            daysSinceArrival +
+            "</td></tr>";
+        } else {
+          table +=
+            "<tr><td><a target='_blank' href='https://mcscviper.usmc.mil/sites/vt/CICO/Lists/Check%20In%20Check%20Out/DisplayItem.aspx?ID=" +
+            obj.Id +
+            "&Source=https://mcscviper.usmc.mil/sites/vt/CICO/SitePages/Check%20In.aspx&ContentTypeId=0x0100E409E7611C4D6F4EBBEEECA751CEE45D'>View</a></td><td>" +
+            obj.LastName +
+            "</td><td>" +
+            obj.FirstName +
+            "</td><td>" +
+            (obj.Source != null ? obj.Source : "") +
+            "</td><td>" +
+            (obj.Organization != null ? obj.Organization : "") +
+            "</td><td>" +
+            (obj.Location != null ? obj.Location : "") +
+            "</td><td>" +
+            plannedArrivalDate +
+            "</td><td>" +
+            arrivalDate +
+            "</td><td>" +
+            daysSinceArrival +
+            "</td></tr>";
+        }
+      });
+
+      table += "</tbody></table>";
+      $("div#checkinTable").append(table);
+      $("div#checkinTable table").DataTable({
+        stateSave: false,
+        //"order": [[8, "desc"]]
+        order: [[intOrderColumn, "desc"]]
+        //"order": [[2, "asc"]]
+      });
+    },
+    error: function(data) {
+      failure(data);
+    }
+  });
+}
+
+function failure(d) {
+  console.log(d);
+}
+
+
+function calculateDaysSinceArrival(arrivalDate, accountActivatedDate) {
+  if (arrivalDate != null) {
+    var aad = new Date(arrivalDate);
+    if (accountActivatedDate == null || accountActivatedDate == "") {
+      var today = new Date();
+      today =
+        today.getMonth() +
+        1 +
+        "/" +
+        today.getDate() +
+        "/" +
+        today.getFullYear();
+      today = new Date(today);
+      return viper.diffInDays(aad, today);
+    } else {
+      accountActivatedDate = new Date(accountActivatedDate);
+      return viper.diffInDays(aad, accountActivatedDate);
+    }
+  } else {
+    return 0;
+  }
+}
+
+function calculateDaysSincePlannedArrival(plannedArrivalDate) {
+  var today = new Date();
+  var dtPAD = new Date(plannedArrivalDate);
+  if (viper.isFutureDate)
+    return 0;
+    
+    today = 
+        today.getMonth() +
+        1 +
+        "/" +
+        today.getDate() +
+        "/" +
+        today.getFullYear();
+      today = new Date(today);
+      return viper.diffInDays(dtPAD, today);
+}
+
+*/
+
+
+</script>
+
+

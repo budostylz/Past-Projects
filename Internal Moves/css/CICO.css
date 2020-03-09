@@ -1,0 +1,309 @@
+/*-------GLOBAL NAVIGATION AND RIBBON STYLES--------*/
+/* red bar on the top*/
+div#suiteBarLeft {
+	background: rgba(138,0,0,1);
+	background: -moz-linear-gradient(top, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(138,0,0,1)), color-stop(50%, rgba(120,0,0,1)), color-stop(100%, rgba(96,0,0,1)));
+	background: -webkit-linear-gradient(top, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: -o-linear-gradient(top, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: -ms-linear-gradient(top, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: linear-gradient(to bottom, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8a0000', endColorstr='#600000', GradientType=0 );
+}
+
+/* Global Navigation (Black bar) */
+.ms-cui-topBar2 {
+	background: rgba(76,76,76,1);
+	background: -moz-linear-gradient(top, rgba(76,76,76,1) 0%, rgba(19,19,19,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(76,76,76,1)), color-stop(100%, rgba(19,19,19,1)));
+	background: -webkit-linear-gradient(top, rgba(76,76,76,1) 0%, rgba(19,19,19,1) 100%);
+	background: -o-linear-gradient(top, rgba(76,76,76,1) 0%, rgba(19,19,19,1) 100%);
+	background: -ms-linear-gradient(top, rgba(76,76,76,1) 0%, rgba(19,19,19,1) 100%);
+	background: linear-gradient(to bottom, rgba(76,76,76,1) 0%, rgba(19,19,19,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313', GradientType=0 );
+}
+
+#mainContent {
+	/*ALL STYLES FROM VIPERCOSTYLE SHOULD BE REMOVED*/
+}
+
+/* List table border */
+.ms-cui-tt-a > .ms-cui-tt-span, .ms-cui-tt-s.ms-browseTab > .ms-cui-tt-a > .ms-cui-tt-span, .ms-cui-tt-s.ms-browseTab > .ms-cui-tt-a:hover > .ms-cui-tt-span {
+	color:#FFFFFF!important;
+}
+
+/* Global Navigation border */
+.ms-browseTabContainer.ms-cui-topBar2 {
+	border-bottom:1px solid black!important;
+}
+
+/* Links on the black bar */
+.ms-promotedActionButton-text {
+	color:white!important;
+}
+
+/* Global Navigation links */
+.ms-core-listMenu-horizontalBox .ms-core-listMenu-selected:link, .ms-core-listMenu-horizontalBox .ms-core-listMenu-selected:visited, .ms-core-listMenu-horizontalBox .ms-core-listMenu-selected, .ms-tv-selected:link,
+.ms-core-listMenu-horizontalBox a.ms-core-listMenu-item:hover, .ms-core-listMenu-horizontalBox a.ms-core-listMenu-selected.ms-core-listMenu-item:hover, a.ms-tv-item:hover, a.ms-tv-header:hover {
+	color:maroon!important;
+}
+
+/* links on the global navigation (Newsfeed, OneDrive, Sites, etc) */
+.ms-core-suiteLink-a:hover {
+	background: rgba(138,0,0,1);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, rgba(138,0,0,1)), color-stop(50%, rgba(120,0,0,1)), color-stop(100%, rgba(96,0,0,1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	background: radial-gradient(ellipse at center, rgba(138,0,0,1) 0%, rgba(120,0,0,1) 50%, rgba(96,0,0,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8a0000', endColorstr='#600000', GradientType=1 );
+}
+
+/* button style */
+input[type=button]:hover, input[type=reset]:hover, input[type=submit]:hover, button:hover, input[type=button]:focus, input[type=reset]:focus, input[type=submit]:focus, button:focus {
+	border-color:rgba(255,213,213,1);
+	background:rgba(255,243,243,1);
+}
+
+/* quick-links hover menu*/
+
+li > a.ms-core-listMenu-selected.ms-core-listMenu-item:hover {
+    background-color: maroon;
+}
+
+li > a.ms-core-listMenu-item:hover, li > a.ms-core-listMenu-item:active {
+	background-color:rgba(255,243,243,1);
+}
+
+/* menu links*/
+.ms-core-listMenu-selected:link, .ms-core-listMenu-selected:visited, .ms-core-listMenu-selected {
+	background-color:maroon;
+	color:white;
+}
+
+/* h1 in content page */
+.ms-rtestate-field h1, h1.ms-rteElement-H1, .ms-rtestate-field h2, h2.ms-rteElement-H2 {
+	color:maroon;
+}
+
+
+/* List table border */
+table.ms-listviewtable {
+    border-collapse: separate;
+    border: 1px solid lightgrey;
+    width:100%;
+}
+
+/* Alternating rows on any given list */
+.ms-alternating {
+    background-color: transparent;
+    background-color: aliceBlue;
+}
+.ms-vl-recent {
+	background-color:#D7C800;
+}
+
+/**************** CICO Styles *********************/
+.ms-core-animation-transparent
+{
+    opacity:0;
+}
+.ms-isBot .ms-core-animation-transparent
+{
+    opacity:1;
+}
+
+
+#sideNavBox {
+    display:none;
+}
+#s4-titlerow {
+    border-bottom:1px solid #bfbfbf;
+    box-sizing:content-box!important;
+}
+#s4-bodyContainer {
+    padding-bottom:0px!important;
+}
+#contentBox {
+    margin:0px;
+}
+
+#contentRow {
+    padding-top:0px;
+}
+#MSOZoneCell_WebPartWPQ2 {
+    margin:0px;
+}
+
+h1#pageTitle {
+    margin-top: 5px;
+    line-height: 20px;
+}
+h1#pageTitle span {
+    font-size: 20px;
+    font-weight:bold;
+}
+
+a.reportButton:first-child { 
+    border-top:1px solid #666;
+}
+
+a.ico-complete {
+    background-image:url('https://mcscviper.usmc.mil/sites/vt/CICO/SiteAssets/img/ico-sprite.png');
+    background-repeat:no-repeat;
+    background-position: 5px 2px;
+}
+
+a.ico-ongoing{
+    background-image:url('https://mcscviper.usmc.mil/sites/vt/CICO/SiteAssets/img/ico-sprite.png');
+    background-repeat:no-repeat;
+    background-position: 5px -25px;
+}
+
+a.reportButton {
+    width: 250px;
+    display: block;
+    padding: 5px 10px 5px 35px;
+    border-bottom:1px solid #666;
+    border-left:1px solid #666;
+    border-right:1px solid #666;
+    border-top:1px solid #fff;
+    color: #666;
+    background-color: #efefef;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+div#buttons a {
+    display: block;
+    float: left;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    background-color: maroon;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#wrapper div[id$='wrap'] {
+    float:left;
+}
+
+#left-wrap {
+    width:300px;
+    border-right:1px solid #bfbfbf;
+    min-height:500px;
+    height:auto;
+    background-color:#d9d9d9;
+    background-image:url("https://mcscviper.usmc.mil/sites/vt/CICO/SiteAssets/img/mcsc-logo-trans.png");
+    background-position: center bottom;
+    background-repeat:no-repeat;
+}
+
+#left-wrap h3 {
+    text-align: center;
+    color: maroon;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#left-wrap ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+#left-wrap ul li {
+    border-top: 1px solid white;
+    border-bottom: 1px solid #a6a6a6;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+#left-wrap a {
+    color: #7f7f7f;
+}
+
+#left-wrap a:hover {
+    text-decoration: none;
+}
+
+#left-wrap ul li:hover {
+    background-color: #ededed;
+}
+
+#left-wrap ul li:first-child {
+    border-top: 0px solid transparent;
+    padding:0;
+}
+
+#left-wrap ul li:last-child {
+    border-bottom: 0px solid transparent;
+    padding:0;
+}
+
+
+#right-wrap {
+    background-color:#f2f2f2;
+    padding:20px;
+    overflow-y:scroll;
+}
+
+#ctl00_PlaceHolderMain_WikiField div.ms-wikicontent {
+    padding-right: 0px!important;
+}
+.ms-rte-layoutszone-inner {
+    margin:0px;
+}
+
+p.long-line {
+    font-size: 18px;
+    font-weight: bold;
+    color: maroon;
+    padding-left: 7px;
+    border-bottom: 1px solid maroon;
+    width: 240px;
+    line-height: 20px !important;
+    margin-bottom:0px!important;
+}
+
+p.subtitle {
+    color: maroon;
+    font-style: italic;
+    padding-left: 7px;
+}
+table.ms-listviewtable {
+    border:0px solid transparent;
+    border-collapse: separate;
+    width: 100%;
+}
+
+#js-listviewthead-WPQ2 tr th {
+font-weight: bold;
+color: black;
+}
+
+table[summary='Check Out'] tr td {
+background-color: white;
+}
+
+table[summary='Check Out'] tbody tr:first-child td {
+border-top: 1px solid black;
+}
+
+table[summary='Check Out'] tbody tr:last-child td {
+border-bottom: 1px solid black;
+}
+
+.ms-vh2 a {
+color: #333;
+font-size: 14px;
+font-weight:bold;
+}
+
+.ms-alternating {
+background-color: white;
+}
+

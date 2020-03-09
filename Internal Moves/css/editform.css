@@ -1,0 +1,106 @@
+	div.divGroup h3, div.divSubGroup h3 {
+		font-weight:bold;
+	}
+	
+	.divGroup {
+		border:2px solid black;
+		width:97%;
+		padding:10px;
+		margin:10px;
+	}
+	
+	.divSubGroup {
+	    border: 2px solid black;
+	    padding: 10px 3px 10px 10px;
+	    margin: 0 3px;
+	    float: left;
+	    width: 45%;
+	    min-height:45px;
+	    height:45px;
+	}
+	.readonlyBlock {
+	    padding: 0 5px 2px 5px;
+	    border: 1px solid #bcbcbc;
+	    min-height:20px;
+	    background-color:#e5e5e5;
+		color:#707070;
+		height:auto;
+	}
+	.shortText{
+		width:75px;
+	}
+
+	td.readonlyBlock a{
+		color:#707070;	
+	}
+	.divGroup td:nth-child(2n+1) {
+	    /*padding-right: 5px;
+	    text-align: right;*/
+	}
+	
+	#daysSinceArrival {
+		font-weight:bold;
+		color:red;
+	}
+	.accountActivated{
+		color:green !important;
+	}
+	#arrivalDate {
+	    min-width: 70px;
+	}
+	.hiddenBlock {
+		color:red;
+		display:none;
+	}
+	.hiddenField {
+		display:none;
+	}
+	
+	div.adminOfficers input {
+		width:200px;
+	}
+	div.adminOfficers input[title="Building"] {
+		width:150px;
+	}
+	div.adminOfficers input[title="WIN"] {
+		width:50px;
+	}
+	div.adminOfficers input[title="Port #"] {
+		width:75px;
+	}
+	div.g6admin input[type='text'] {
+		width:158px;
+	}
+		
+	#onboardingActions td.readonlyBlock {
+	    min-width: 158px;
+	}
+	#onboardNotes textarea {
+		width:600px;	
+	}
+
+
+	.grid-container {
+		display: grid;
+		grid-template-columns: auto auto auto;
+		/*background-color: #2196F3;
+		padding: 10px;*/
+	  }
+	  .grid-item {
+		/*background-color: rgba(255, 255, 255, 0.8);
+		border: 1px solid rgba(0, 0, 0, 0.8);
+		padding: 20px;
+		font-size: 30px;
+		text-align: left;*/
+	  }
+
+	  .blackbutton {
+		background-color: #000000;
+		border: none;
+		color: white;
+		padding: 15px 32px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+	}

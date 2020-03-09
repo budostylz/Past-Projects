@@ -1,0 +1,11 @@
+ON THE VIEW PAGE:
+//1. Not sure of need for “effective move date” and “actual move date”.  I would think “effective move date” is good enough.
+//2. I think columns “Current Location” and “Destination” could be moved to the next level down viewable from VIEW or EDIT level.
+//3. Details of “Type of Internal Change” should also be expanded upon in the VIEW or EDIT level.  This would mean that you only need a few selections under “Type of Internal Change” since details would be spelled out in next level down.
+//4. Need a “Next Review Date” entry.  This will be the next time the record should be examined for change in status.
+
+
+
+
+If you can, please add another check box for Cyber.  Please add an N\A box, because only some people have privileged tokens.
+Can you also add the N\A check box to the Civilian\Military and Contractor Cyber pages.
