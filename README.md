@@ -25,12 +25,11 @@
 
 + Production URL: <http://placesearch.budoapps.com/>
 
-### Drink App
+### [Drink App](https://github.com/budostylz/e15/tree/master/e15p2)
 + Simple ordering form for proof of concept demonstrating Laravel/PHP framework capabilities.
 
 + Production URL: <http://e15p2.budoapps.com/>
 
-+ Source: https://github.com/budostylz/e15/tree/master/e15p2
 
 
 
